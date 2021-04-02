@@ -26,7 +26,7 @@
                     <h2 class="text-info">Registration</h2>
                     <p>Join the world of culinary and showcase your recipes to the world.</p>
                 </div>
-                <form>
+                <form id="reg-form" method="POST">
                     <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name"></div>
                     <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"></div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password"></div>
@@ -36,6 +36,29 @@
             </div>
         </section>
     </main>
+    <!-- <script>
+        const form = document.getElementById('reg-form')
+        form.addEventListener('submit', registerUser)
+
+        function registerUser(event) {
+            event.preventDefault()
+            const username = document.getElementById('name').value
+            const password = document.getElementById('password').value
+
+            const result = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            }).then((res) => res.json())
+
+            console.log(result)
+        }
+    </script> -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
