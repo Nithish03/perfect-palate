@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Brand</title>
+    <title>Contact Us - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
@@ -15,29 +15,32 @@
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ml-auto"></ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="contact-us.html">Contact Us</a></li>
+                </ul>
             </div>
         </div>
     </nav>
-    <main class="page registration-page">
+    <main class="page contact-us-page">
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Registration</h2>
-                    <p>Join the world of culinary and showcase your recipes to the world.</p>
+                    <h2 class="text-info">Contact Us</h2>
+                    <p></p>
                 </div>
-                <form>
-                    <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name"></div>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"></div>
-                    <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password"></div>
-                    <div class="form-group"><label for="password">Confirm Password</label><input class="form-control item" type="password" id="password"></div><button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-                    <p class="text-center" style="margin: 11px;"><a href="login.html">Already a member? Sign in</a></p>
+                <form data-bss-recipient="6341316eee1c7b71caf4a2fb7dceb275">
+                    <div class="form-group"><label for="name">Name</label><input class="form-control" type="text" id="name" name="name" required=""></div>
+                    <div class="form-group"><label for="subject">Subject</label><input class="form-control" type="text" id="subject" name="subject" required=""></div>
+                    <div class="form-group"><label for="email">Email</label><input class="form-control" type="email" id="email" name="email" required=""></div>
+                    <div class="form-group"><label for="message">Message</label><textarea class="form-control" id="message" name="message" required=""></textarea></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Send</button></div>
                 </form>
             </div>
         </section>
     </main>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/smart-forms.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/smoothproducts.min.js"></script>
     <script src="assets/js/theme.js"></script>
