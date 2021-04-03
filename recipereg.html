@@ -4,22 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Recipe Register - Perfect Palate</title>
+    <title>Recipe Creation - Perfect Palate</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Multi-step-form.css">
-    <link rel="stylesheet" href="assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <li class="nav-item"><a class="nav-link" href="#">Sign out</a></li>
-                    </li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -28,119 +25,23 @@
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Let us know your secret recipe</h2>
+                    <h2 class="text-info">Hello Chef</h2>
+                    <p>Let the world know your secret recipe.</p>
                 </div>
-                <section>
-                    <div id="multple-step-form-n" class="container overflow-hidden" style="margin-top: 0px;margin-bottom: 10px;padding-bottom: 300px;padding-top: 57px;">
-                        <div id="progress-bar-button" class="multisteps-form">
-                            <div class="row">
-                                <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
-                                    <div class="multisteps-form__progress"><a class="btn multisteps-form__progress-btn js-active" role="button" title="User Info">Recipe Name</a><a class="btn multisteps-form__progress-btn" role="button" title="User Info">About</a><a class="btn multisteps-form__progress-btn" role="button" title="User Info">Contact&nbsp;</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="multistep-start-row" class="row">
-                            <div id="multistep-start-column" class="col-12 col-lg-8 m-auto">
-                                <form id="main-form" class="multisteps-form__form">
-                                    <div id="single-form-next" class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                                        <h3 class="text-center multisteps-form__title">Recipe Name</h3>
-                                        <div id="form-content" class="multisteps-form__content">
-                                            <div id="input-grp-double" class="form-row mt-4">
-                                                <div class="col-12 col-sm-6"><input class="form-control multisteps-form__input" type="text" placeholder="Name of the recipe"></div>
-                                                <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="form-control" type="number" id="Prep-time"></div>
-                                            </div>
-                                            <div id="input-grp-single" class="form-row mt-4">
-                                                <div class="col-12"><input class="form-control multisteps-form__input" type="text" placeholder="Category"></div>
-                                            </div>
-                                            <div id="next-button" class="button-row d-flex mt-4"><button class="btn btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button></div>
-                                        </div>
-                                    </div>
-                                    <div id="single-form-next-prev" class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                                        <h3 class="text-center multisteps-form__title">About</h3>
-                                        <div id="form-content-1" class="multisteps-form__content">
-                                            <div id="input-grp-double-1" class="form-row mt-4">
-                                                <div class="col-12 col-sm-6"><input class="form-control multisteps-form__input" type="text" placeholder="First name "></div>
-                                                <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="form-control multisteps-form__input" type="text" placeholder="Last name "></div>
-                                            </div>
-                                            <div id="input-grp-single-1" class="form-row mt-4">
-                                                <div class="col-12"><input class="form-control multisteps-form__input" type="text" placeholder="House"></div>
-                                            </div>
-                                            <div id="next-prev-buttons" class="button-row d-flex mt-4"><button class="btn btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button><button class="btn btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button></div>
-                                        </div>
-                                    </div>
-                                    <div id="single-form-next-prev-1" class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                                        <h3 class="text-center multisteps-form__title">About</h3>
-                                        <div id="form-content-2" class="multisteps-form__content">
-                                            <div id="input-grp-double-2" class="form-row mt-4">
-                                                <div class="col-12 col-sm-6"><input class="form-control multisteps-form__input" type="text" placeholder="First name "></div>
-                                                <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="form-control multisteps-form__input" type="text" placeholder="Last name "></div>
-                                            </div>
-                                            <div id="input-grp-single-2" class="form-row mt-4">
-                                                <div class="col-12"><input class="form-control multisteps-form__input" type="text" placeholder="House"></div>
-                                            </div>
-                                            <div id="next-prev-buttons-1" class="button-row d-flex mt-4"><button class="btn btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button><button class="btn btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <form>
-                    <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name"></div>
-                    <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password"></div>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"></div><button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                    <div class="mb-3"><label class="form-label" for="name">Recipe Name</label><input class="form-control item" type="text" id="name" placeholder="Your Recipe Name"></div>
+                    <div class="mb-3"><label class="form-label" for="prep">Preparation Time</label><label class="form-label" for="cook" style="margin-right: 0px;margin-top: 0px;margin-left: 142px;">Cooking Time</label><input class="form-control" type="number" style="width: 140px;margin-left: 279px;margin-bottom: -23px;"><input class="form-control" type="number" style="width: 140px;margin-bottom: -1px;margin-right: 0px;margin-top: -36px;"></div>
+                    <div class="mb-3"><label class="form-label" for="email">Ingredients</label><textarea class="form-control" placeholder="No - Ingredient name (Ex: 1 - Tomato)" style="height: 195px;"></textarea></div>
+                    <div class="mb-3"><label class="form-label" for="email">Procedure</label><textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea></div>
+                    <div class="mb-3"><label class="form-label" for="email">Showcase your dish</label><input class="form-control" type="file" style="margin-left: 0px;"></div><button class="btn btn-primary" type="submit">Create your Recipe</button>
                 </form>
             </div>
         </section>
     </main>
-    <footer class="page-footer dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <h5>Get started</h5>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Sign up</a></li>
-                        <li><a href="#">Downloads</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>About us</h5>
-                    <ul>
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Reviews</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help desk</a></li>
-                        <li><a href="#">Forums</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>Legal</h5>
-                    <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>© 2021 Copyright Text</p>
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="assets/js/smoothproducts.min.js"></script>
+    <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/Multi-step-form.js"></script>
 </body>
 
 </html>
