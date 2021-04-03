@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Recipe Creation - Perfect Palate</title>
+    <title>Register - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
 </head>
@@ -15,9 +16,7 @@
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Sign out</a></li>
-                </ul>
+                <ul class="navbar-nav ms-auto"></ul>
             </div>
         </div>
     </nav>
@@ -31,9 +30,15 @@
                 <form>
                     <div class="mb-3"><label class="form-label" for="name">Recipe Name</label><input class="form-control item" type="text" id="name" placeholder="Your Recipe Name"></div>
                     <div class="mb-3"><label class="form-label" for="prep">Preparation Time</label><label class="form-label" for="cook" style="margin-right: 0px;margin-top: 0px;margin-left: 142px;">Cooking Time</label><input class="form-control" type="number" style="width: 140px;margin-left: 279px;margin-bottom: -23px;"><input class="form-control" type="number" style="width: 140px;margin-bottom: -1px;margin-right: 0px;margin-top: -36px;"></div>
+                    <div class="mb-3"><label class="form-label" for="email">Category</label>
+                        <div class="dropdown"><button class="btn btn-primary active dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Cuisine</button>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">Indian</a><a class="dropdown-item" href="#">Continental</a><a class="dropdown-item" href="#">Korean</a><a class="dropdown-item" href="#">Chinese</a><a class="dropdown-item" href="#">Thai</a><a class="dropdown-item" href="#">Caribbean</a></div>
+                        </div>
+                    </div>
                     <div class="mb-3"><label class="form-label" for="email">Ingredients</label><textarea class="form-control" placeholder="No - Ingredient name (Ex: 1 - Tomato)" style="height: 195px;"></textarea></div>
-                    <div class="mb-3"><label class="form-label" for="email">Procedure</label><textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea></div>
-                    <div class="mb-3"><label class="form-label" for="email">Showcase your dish</label><input class="form-control" type="file" style="margin-left: 0px;"></div><button class="btn btn-primary" type="submit">Create your Recipe</button>
+                    <div class="mb-3"><label class="form-label" for="email">Procedure</label><textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea><label class="form-label" for="email">Showcase your Dish</label>
+                        <div class="custom-file"><input class="form-control custom-file-input" type="file"></div>
+                    </div><button class="btn btn-primary" type="submit">Create your Recipe</button>
                 </form>
             </div>
         </section>
