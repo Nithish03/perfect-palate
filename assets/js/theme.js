@@ -1,12 +1,11 @@
-// Custome theme code
+// Custom theme code
 
-if ($('.clean-gallery').length > 0) {
-   baguetteBox.run('.clean-gallery', { animation: 'slideIn'});
+if (document.getElementsByClassName('clean-gallery').length > 0) {
+   baguetteBox.run('.clean-gallery', { animation: 'slideIn' });
 }
 
-if ($('.clean-product').length > 0) {
-    $(window).on("load",function() {
-        $('.sp-wrap').smoothproducts();
-    });
+if (document.getElementsByClassName('clean-product').length > 0) {
+    window.onload = function() {
+        vanillaZoom.init('#product-preview');
+    };
 }
-
