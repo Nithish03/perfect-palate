@@ -18,8 +18,6 @@ try {
     }catch(e) {
             console.log("Could not connect");
     }
-
-
 var db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
@@ -41,15 +39,32 @@ app.post('/', function(req,res){
          "email": email,
          "password": password
      }
-
-     db.collection('users').insertOne(data,(err,collection) => {
-         if(err){
-             throw err;
-         }
-         console.log("Record Inserted Successfully");
-     });
-
-     return res.redirect('/categories.html')
+     var data1 = {
+        "email": email,
+    }
+     db.collection('users').findOne(data1,(err,collection) => {
+        if(err){
+            throw err;
+        }
+        else
+        {
+            console.log(collection);
+            if(collection!=null)
+            {
+                return res.redirect('/login.html')
+            }
+            else
+            {
+                db.collection('users').insertOne(data,(err,collection) => {
+                    if(err){
+                        throw err;
+                    }
+                    console.log("Record Inserted Successfully");
+                });
+                return res.redirect('/categories.html')
+            }
+        }
+    });
 })
 
 app.listen(port);
