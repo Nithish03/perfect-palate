@@ -6,6 +6,9 @@ const port = 3000;
 const app = express()
 const router = express.Router();
 
+app.use("/static", express.static(__dirname + "/static"));
+app.set("view engine", "ejs");
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname, {  index: 'registration.html'}));
 app.use(bodyParser.urlencoded({
@@ -22,7 +25,9 @@ var db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
 
-
+app.get('/admin/index',function(req, res) {
+    res.render("admin/index");
+});
 
 app.get('/',function(req,res) {
     res.render('reg-form');
