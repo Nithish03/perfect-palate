@@ -1,20 +1,35 @@
 var express = require("express")
+var path = require('path');
+var crypto = require('crypto');
 var bodyParser = require("body-parser")
 var mongoose = require("mongoose")
-const { urlencoded } = require("body-parser")
+var multer = require('multer');
+var GridFsStorage = require('multer-gridfs-storage');
+var Grid = require('gridfs-stream')
+var methodOverride = require('method-override')
+const { urlencoded } = require("body-parser");
+const { connect } = require("http2");
+
+
 const port = 3000;
 const app = express()
 const router = express.Router();
 
+// Middleware
 app.use("/static", express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
+app.use(methodOverride('_method'));
+
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname, {  index: '/admin/registration'}));
 app.use(bodyParser.urlencoded({
      extended: false
 }));
+// MongoURI connection
 const mongoAtlasUri = "mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook";
+
+const conn = mongoose.createConnection(mongoAtlasUri);
 try {
     mongoose.connect(mongoAtlasUri,{ useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log("Mongoose is connected"),);
@@ -24,8 +39,38 @@ try {
 var db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
-// Converting to ejs //
 
+// Init gridfs
+let gfs;
+
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('uploads');
+})
+
+// Creating storage engine
+const storage = new GridFsStorage({
+    url: mongoAtlasUri,
+    file: (req, file) => {
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+          if (err) {
+            return reject(err);
+          }
+          const filename = buf.toString('hex') + path.extname(file.originalname);
+          const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+          };
+          resolve(fileInfo);
+        });
+      });
+    }
+  });
+  const upload = multer({ storage });
+
+// Converting to ejs //
+// @route GET
 app.get('/admin/index',function(req, res) {
     res.render("admin/index");
 });
@@ -47,19 +92,87 @@ app.get('/admin/recipepage',function(req, res) {
 app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
-
 app.get('/admin/login',function(req, res) {
     res.render("admin/login");
 });
 
+app.get('/admin/recipereg',function(req, res) {
+    gfs.files.find().toArray((err,files) => {
+        // Check if files
+        if(!files || files.length ===0) {
+            res.render('index', {files: false});
+         } else {
+             files.map(file => {
+                 if(file.contentType == 'image/jpeg' || file.contentType == 'image/png') 
+                 {
+                    file.isImage = true;
+                 } else {
+                     file.isImage = false;
+                 }
+             });
+             res.render('index', {files: files});
+         }
+    });
+});
+
+// Get /files
+// Displaiyng files
+app.get('/files',(req,res) => {
+    gfs.files.find().toArray((err,files) => {
+        // Check if files
+        if(!files || files.length ===0) {
+            return res.status(404).json({
+                err: 'No Files exist'
+            });
+         }
+         //Files exisst
+         return res.json(files);
+    });
+});
+
+// Get /files/filename
+// Displaiyng files
+app.get('/files/:filename',(req,res) => {
+    gfs.files.findOne({filename: req.params.filename},(err,file) => {
+        if(!file || file.length ===0) {
+            return res.status(404).json({
+                err: 'No File exist'
+            });
+         }
+         // File exists
+         return res.json(file);
+    });
+});
+
+// Get /files/filename
+// Displaiyng images
+app.get('/image/:filename',(req,res) => {
+    gfs.files.findOne({filename: req.params.filename},(err,file) => {
+        if(!file || file.length ===0) {
+            return res.status(404).json({
+                err: 'No File exist'
+            });
+         }
+         // Check if image
+         if(file.contentType === 'image/jpeg'|| file.contentType === 'img/png') {
+            // Read output
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res);
+         } else {
+             res.status(404).json({
+                 err: 'Not an image'
+             });
+         }
+    });
+});
 
 // Converting to ejs //
 app.get('/',function(req,res) {
     res.render('reg-form');
     res.sendFile(__dirname + '/admin/registration')
 });
-
-//Registeration 
+// @route POST
+// Registeration 
 app.post('/admin/registration', function(req,res){
      var name = req.body.name;
      var email = req.body.email;
@@ -98,8 +211,14 @@ app.post('/admin/registration', function(req,res){
     });
 })
 
+//Upload
+app.post('/upload', upload.single('file'), (req,res) => {
+    //res.json({file: req.file});
+    res.redirect('/admin/recipepage');
+});
+
 //Login
-app.get('/',function(req,res) {
+app.get('/admin/login',function(req,res) {
     res.render('login-form');
     res.sendFile(__dirname + '/admin/login')
 });

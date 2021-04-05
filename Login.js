@@ -26,12 +26,12 @@ db.once('open',()=>console.log("Connected to Database"))
 
 
 
-app.get('/',function(req,res) {
+app.get('/admin/login',function(req,res) {
     res.render('login-form');
     res.sendFile(__dirname + '/admin/login')
 });
 
-app.post('/', function(req,res){
+app.post('/admin/login', function(req,res){
      var email = req.body.email;
      var password = req.body.password; 
      var data = {
