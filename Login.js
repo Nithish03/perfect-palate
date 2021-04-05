@@ -7,7 +7,7 @@ const app = express()
 const router = express.Router();
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname, {  index: 'login.html'}));
+app.use(express.static(__dirname, {  index: '/admin/login'}));
 app.use(bodyParser.urlencoded({
      extended: false
 }));
@@ -28,7 +28,7 @@ db.once('open',()=>console.log("Connected to Database"))
 
 app.get('/',function(req,res) {
     res.render('login-form');
-    res.sendFile(__dirname + '/login.html')
+    res.sendFile(__dirname + '/admin/login')
 });
 
 app.post('/', function(req,res){
@@ -49,11 +49,11 @@ app.post('/', function(req,res){
             console.log(collection);
             if(collection!=null)
             {
-                return res.redirect('/categories.html')
+                return res.redirect('/admin/categories')
             }
             else
             {
-                return res.redirect('/login.html')
+                return res.redirect('/admin/login')
             }
         }
     });

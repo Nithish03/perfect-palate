@@ -10,7 +10,7 @@ app.use("/static", express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname, {  index: 'registration.html'}));
+app.use(express.static(__dirname, {  index: '/admin/registration'}));
 app.use(bodyParser.urlencoded({
      extended: false
 }));
@@ -48,13 +48,19 @@ app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
 
+app.get('/admin/login',function(req, res) {
+    res.render("admin/login");
+});
+
+
 // Converting to ejs //
 app.get('/',function(req,res) {
     res.render('reg-form');
-    res.sendFile(__dirname + '/registration.html')
+    res.sendFile(__dirname + '/admin/registration')
 });
 
-app.post('/', function(req,res){
+//Registeration 
+app.post('/admin/registration', function(req,res){
      var name = req.body.name;
      var email = req.body.email;
      var password = req.body.password; 
@@ -76,7 +82,7 @@ app.post('/', function(req,res){
             console.log(collection);
             if(collection!=null)
             {
-                return res.redirect('/login.html')
+                return res.redirect('/admin/login')
             }
             else
             {
@@ -86,10 +92,45 @@ app.post('/', function(req,res){
                     }
                     console.log("Record Inserted Successfully");
                 });
-                return res.redirect('/categories.html')
+                return res.redirect('/admin/login')
             }
         }
     });
+})
+
+//Login
+app.get('/',function(req,res) {
+    res.render('login-form');
+    res.sendFile(__dirname + '/admin/login')
+});
+
+app.post('/admin/login', function(req,res){
+     var email = req.body.email;
+     var password = req.body.password; 
+     var data = {
+         "email": email,
+         "password": password
+     }
+     console.log(`${email} and password is ${password}`)
+
+    db.collection('users').findOne(data,(err,collection) => {
+        if(err){
+            throw err;
+        }
+        else
+        {
+            console.log(collection);
+            if(collection!=null)
+            {
+                return res.redirect('/admin/categories')
+            }
+            else
+            {
+                return res.redirect('/admin/login')
+            }
+        }
+    });
+   
 })
 app.listen(port);
 console.log("Listening on PORT 3000");

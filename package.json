@@ -4,7 +4,8 @@
   "description": "- This is a simple collaborative project developed using nodeJS and MongoDB.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node registration.js",
+    "dev": "nodemon registration.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,11 @@
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
+    "method-override": "^3.0.0",
     "mongoose": "^5.12.3",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0",
     "nodemon": "^2.0.7"
   }
 }

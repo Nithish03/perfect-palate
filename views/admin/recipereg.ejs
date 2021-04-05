@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Brand</title>
+    <title>Register - Perfect Palate</title>
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="/static/admin/css/Drag-Drop-File-Input-Upload.css">
@@ -27,18 +27,42 @@
                     <h2 class="text-info">Hello Chef</h2>
                     <p>Let the world know your secret recipe.</p>
                 </div>
-                <form>
-                    <div class="mb-3"><label class="form-label" for="name">Recipe Name</label><input class="form-control item" type="text" id="name" placeholder="Your Recipe Name"></div>
-                    <div class="mb-3"><label class="form-label" for="prep">Preparation Time</label><label class="form-label" for="cook" style="margin-right: 0px;margin-top: 0px;margin-left: 142px;">Cooking Time</label><input class="form-control" type="number" style="width: 140px;margin-left: 279px;margin-bottom: -23px;"><input class="form-control" type="number" style="width: 140px;margin-bottom: -1px;margin-right: 0px;margin-top: -36px;"></div>
-                    <div class="mb-3"><label class="form-label" for="email">Category</label>
-                        <div class="dropdown"><button class="btn btn-primary active dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Cuisine</button>
-                            <div class="dropdown-menu"><a class="dropdown-item" href="#">Indian</a><a class="dropdown-item" href="#">Continental</a><a class="dropdown-item" href="#">Korean</a><a class="dropdown-item" href="#">Chinese</a><a class="dropdown-item" href="#">Thai</a><a class="dropdown-item" href="#">Caribbean</a></div>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3"><label class="form-label" for="name">Recipe Name</label>
+                        <input class="form-control item" type="text" id="name" placeholder="Your Recipe Name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="prep">Preparation Time</label>
+                        <label class="form-label" for="cook" style="margin-right: 0px;margin-top: 0px;margin-left: 142px;">Cooking Time</label>
+                        <input class="form-control" type="number" style="width: 140px;margin-left: 279px;margin-bottom: -23px;">
+                        <input class="form-control" type="number" style="width: 140px;margin-bottom: -1px;margin-right: 0px;margin-top: -36px;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Category</label>
+                        <div class="dropdown">
+                            <button class="btn btn-primary active dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Cuisine</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Indian</a>
+                                <a class="dropdown-item" href="#">Continental</a>
+                                <a class="dropdown-item" href="#">Korean</a>
+                                <a class="dropdown-item" href="#">Chinese</a>
+                                <a class="dropdown-item" href="#">Thai</a>
+                                <a class="dropdown-item" href="#">Caribbean</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-3"><label class="form-label" for="email">Ingredients</label><textarea class="form-control" placeholder="No - Ingredient name (Ex: 1 - Tomato)" style="height: 195px;"></textarea></div>
-                    <div class="mb-3"><label class="form-label" for="email">Procedure</label><textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea><label class="form-label" for="email">Showcase your Dish</label>
-                        <div class="custom-file"><input class="form-control custom-file-input" type="file"></div>
-                    </div><button class="btn btn-primary" type="submit">Create your Recipe</button>
+                    <div class="mb-3"><label class="form-label" for="email">Ingredients</label>
+                        <textarea class="form-control" placeholder="No - Ingredient name (Ex: 1 - Tomato)" style="height: 195px;"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Procedure</label>
+                        <textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea>
+                        <label class="form-label" for="file">Showcase your Dish</label>
+                        <div class="custom file mb">
+                            <input type = "file" name = "file" id = "file" class = "custom-file-input">
+                            <label for ="file" class = "custom-file-label">Choose Image</label>
+                        </div>
+                    <button class="btn btn-primary" type="submit">Create your Recipe</button>
                 </form>
             </div>
         </section>
