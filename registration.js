@@ -24,11 +24,31 @@ try {
 var db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
+// Converting to ejs //
 
 app.get('/admin/index',function(req, res) {
     res.render("admin/index");
 });
+app.get('/admin/registration',function(req, res) {
+    res.render("admin/registration");
+});
+app.get('/admin/categories',function(req, res) {
+    res.render("admin/categories");
+});
+app.get('/admin/contact-us',function(req, res) {
+    res.render("admin/contact-us");
+});
+app.get('/admin/recipe',function(req, res) {
+    res.render("admin/recipe");
+});
+app.get('/admin/recipepage',function(req, res) {
+    res.render("admin/recipepage");
+});
+app.get('/admin/recipereg',function(req, res) {
+    res.render("admin/recipereg");
+});
 
+// Converting to ejs //
 app.get('/',function(req,res) {
     res.render('reg-form');
     res.sendFile(__dirname + '/registration.html')
@@ -71,9 +91,5 @@ app.post('/', function(req,res){
         }
     });
 })
-
 app.listen(port);
-
-
-
 console.log("Listening on PORT 3000");
