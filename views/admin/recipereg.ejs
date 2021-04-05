@@ -4,19 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Perfect Palate</title>
+    <title>Recipe Registration - Perfect Palate</title>
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="/static/admin/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="/static/admin/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="#">Perfect Palate</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ms-auto"></ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Sign out</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -24,24 +26,25 @@
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Hello Chef</h2>
-                    <p>Let the world know your secret recipe.</p>
+                    <h2 class="text-info">Welcome Chef</h2>
+                    <p>Let us know your secret recipe.</p>
                 </div>
-                <form action="/upload" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3"><label class="form-label" for="name">Recipe Name</label>
-                        <input class="form-control item" type="text" id="name" placeholder="Your Recipe Name">
+                <form action = "/upload" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Recipe Name</label>
+                        <input class="form-control item" type="text" id="name" name="recipe"></div>
+                    <div class="form-group" style="width: 165px;"><label for="name">Preparation Time</label>
+                        <input class="form-control item" type="text" id="name" name="recipe" style="width: 142px;" placeholder="In minutes">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="prep">Preparation Time</label>
-                        <label class="form-label" for="cook" style="margin-right: 0px;margin-top: 0px;margin-left: 142px;">Cooking Time</label>
-                        <input class="form-control" type="number" style="width: 140px;margin-left: 279px;margin-bottom: -23px;">
-                        <input class="form-control" type="number" style="width: 140px;margin-bottom: -1px;margin-right: 0px;margin-top: -36px;">
+                    <div class="form-group" style="width: 165px;margin: 0px;margin-right: 0px;margin-left: 277px;margin-top: -86px;">
+                        <label for="name">Cooking Time</label>
+                        <input class="form-control item" type="text" id="name-1" name="recipe" style="width: 142px;" placeholder="In minutes">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="email">Category</label>
+                    <div class="form-group" style="margin-top: 17px;">
+                        <label for="name">Category</label>
                         <div class="dropdown">
-                            <button class="btn btn-primary active dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Cuisine</button>
-                            <div class="dropdown-menu">
+                            <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-toggle="dropdown" type="button">Select Cuisine&nbsp;</button>
+                            <div class="dropdown-menu" data-aos="fade-down">
                                 <a class="dropdown-item" href="#">Indian</a>
                                 <a class="dropdown-item" href="#">Continental</a>
                                 <a class="dropdown-item" href="#">Korean</a>
@@ -51,26 +54,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3"><label class="form-label" for="email">Ingredients</label>
-                        <textarea class="form-control" placeholder="No - Ingredient name (Ex: 1 - Tomato)" style="height: 195px;"></textarea>
+                    <div class="form-group">
+                        <label for="name">Ingredients</label>
+                        <textarea class="form-control form-control-sm" name="ingredients" style="height: 200px;width: 420px;" placeholder="Add commas &quot;,&quot; at end of each ingredient.                            For eg: 1 - Tomato, 1 - Pickle"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="email">Procedure</label>
-                        <textarea class="form-control" placeholder="Instructions" style="height: 195px;"></textarea>
-                        <label class="form-label" for="file">Showcase your Dish</label>
-                        <div class="custom file mb">
-                            <input type = "file" name = "file" id = "file" class = "custom-file-input">
-                            <label for ="file" class = "custom-file-label">Choose Image</label>
-                        </div>
-                    <button class="btn btn-primary" type="submit">Create your Recipe</button>
+                    <div class="form-group">
+                        <label for="name">Procedure</label>
+                        <textarea class="form-control form-control-sm" name="procedure" style="height: 200px;width: 420px;" placeholder="Add commas &quot;,&quot; at end of each ingredient.                            For eg: Add oil to the pan, Add onions"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Upload your dish</label>
+                        <input class="form-control-file" type="file" name="file" class="custom-file-input">
+                    </div>
+                        <button class="btn btn-primary" type="submit" style="width: 420px;margin-left: 0px;">Upload your recipe</button>
                 </form>
             </div>
         </section>
     </main>
-    <script src="/static/admin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="/static/admin/js/vanilla-zoom.js"></script>
-    <script src="/static/admin/js/theme.js"></script>
+    <script src="assets/js/smoothproducts.min.js"></script>
+    <script src="assets/js/theme.js"></script>
 </body>
 
 </html>
