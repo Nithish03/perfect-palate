@@ -251,5 +251,36 @@ app.post('/admin/login', function(req,res){
     });
    
 })
+
+//review
+app.get('/',function(req,res) {
+    res.render('reg-form');
+    res.sendFile(__dirname + '/admin/recipepage')
+});
+
+//Registeration 
+app.post('/admin/recipepage', function(req,res){
+     var email=req.body.email;
+     var stars = req.body.stars;
+     var comment = req.body.comment;
+    
+     var data = {
+         "email": email,
+         "stars": stars,
+         "comment": comment
+         
+     }
+     console.log(`${stars} and password is ${comment}`)
+     
+    
+                db.collection('review').insertOne(data,(err,collection) => {
+                    if(err){
+                        throw err;
+                    }
+                    console.log("Record Inserted Successfully");
+                });
+                return res.redirect('/admin/recipepage')
+})
+
 app.listen(port);
 console.log("Listening on PORT 3000");
