@@ -30,7 +30,7 @@ html, body {
 }
 
 .rating > input:checked ~ label {
-  color: goldenrod;
+  color: gold;
   text-shadow:1px 1px goldenrod, 2px 2px goldenrod, .1em .1em .2em rgba(0,0,0,.5);
 }
 
