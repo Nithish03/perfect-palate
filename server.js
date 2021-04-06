@@ -1,7 +1,5 @@
 var express = require("express")
-//session
-//const session = require("express-session")
-//const filestore = require("session-file-store")(session)
+var session = require('express-session')
 var path = require('path');
 var crypto = require('crypto');
 var bodyParser = require("body-parser")
@@ -31,7 +29,7 @@ const router = express.Router();
 app.use("/static", express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 app.use(methodOverride('_method'));
-
+app.use(session({secret:"hgvjblihoiu89yhugb",resave:false,saveUninitialized:true}));
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname, {  index: '/admin/registration'}));
@@ -217,6 +215,7 @@ app.post('/admin/registration', function(req,res){
                         throw err;
                     }
                     email_id=data.email;
+                    req.session.collection=collection;
                     console.log("Record Inserted Successfully");
                 });
                 return res.redirect('/admin/login')
@@ -255,8 +254,8 @@ app.post('/admin/login', function(req,res){
             console.log(collection);
             if(collection!=null)
             {
-                console.log(`${email} and password is ${password} and id is ${collection._id}`)
                 email_id=data.email;
+                req.session.collection=collection;
                 return res.redirect('/admin/categories')
             }
             else
@@ -276,7 +275,8 @@ app.get('/',function(req,res) {
 
 //Review
 app.post('/admin/recipepage', function(req,res){
-     var email=email_id;
+    console.log(`${req.session.collection.email}`);
+     var email=req.session.collection.email;
      var stars = req.body.stars;
      var comment = req.body.comment;
     
