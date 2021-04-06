@@ -10,6 +10,7 @@ var Grid = require('gridfs-stream')
 var methodOverride = require('method-override')
 const { urlencoded } = require("body-parser");
 const { connect } = require("http2");
+const { response } = require("express");
 
 
 const port = 3000;
@@ -49,6 +50,7 @@ try {
 var db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
+
 
 // Init gridfs
 let gfs;
@@ -124,6 +126,7 @@ app.get('/admin/recipereg',function(req, res) {
          }
     });
 });
+
 
 // Get /files
 // Displaiyng files
