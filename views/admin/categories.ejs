@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container">
-            <a class="navbar-brand logo" href="/admin/index">Perfect Palate</a>
+            <a class="navbar-brand logo" href="/admin/categories">Perfect Palate</a>
             <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Recipes</a>
+                        <a class="nav-link" href="/admin/categories">My Recipes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign out</a>
+                        <a class="nav-link" href="/admin/index">Sign out</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@
                                 <p class="text-center card-text">Indian cuisine has intoxicating aromas, fresh blend of spices and rich ingredients that make it unique and special. The appeal of Indian cuisine is not just limited to Indians. Millions of people across the globe love it.</p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                 <p class="text-center card-text">Continental cuisine comprises the cuisines of Europe including the cuisines brought to other countries by European settlers and colonists. Ingredients include mainly cheese, thyme, rosemery, oregano and most important olive oil.</p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                 <p class="text-center card-text">Korean food is mostly made up of rice, noodles, vegetables, and meats. along with their steam-cooked rice. Sesame oil, soy sauce, salt, garlic, ginger and pepper are ingredients that are often used in the food.<br></p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
@@ -80,10 +80,10 @@
                             <img class="card-img-top w-100 d-block" src="/static/admin/img/scenery/pexels-cats-coming-1907228.jpg">
                             <div class="card-body">
                                 <h4 class="card-title">Chinese</h4>
-                                <p class="text-center card-text">This food comes from many different parts of China and also the food made by Overseas Chinese that live in other parts of the world. Important parts of Chinese food are rice, soy sauce, noodles, tea, and tofu.<br></p>
+                                <p class="text-center card-text">This food comes from many different parts of China and also the food made by Overseas Chinese. Important parts of Chinese food are rice, soy sauce, noodles, tea, and tofu. The prominent cuisines in China are Anhui, Szechuan, and Zhejiang.<br></p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 <p class="text-center card-text">Thai cuisine was influenced by Indian cuisine. Thai people learned how to use spices in their food in various ways from Indians. Today Thai food is its own, with a special unique blend of the 5 tastes: sweet, sour, bitter, salty, and spicy.<br></p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
@@ -105,14 +105,14 @@
                                 <p class="card-text">Caribbean cuisine is a fusion of African, Creole, Cajun, Amerindian, European, Latin American, Indian/South Asian, Middle Eastern, and Chinese. Ingredients may include garlic, onions, scotch bonnet peppers, celery, green onions<br></p>
                             </div>
                             <div>
-                                <button class="btn btn-outline-primary btn-sm" type="button">Learn More</button>
+                                <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipe'">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class ="col-md-13 text-center">
                     <p>Have a secret recipe?</p>
-                    <button class="btn btn-primary" type="submit">Create your own recipe</button>
+                    <button class="btn btn-primary" type="submit" onclick="location.href='/admin/recipereg'">Create your own recipe</button>
                 </div>
             </div>
         </section>
