@@ -5,6 +5,8 @@ var crypto = require('crypto');
 var bodyParser = require("body-parser")
 var mongoose = require("mongoose")
 var multer = require('multer');
+var formidable = require("formidable");
+var fs = require("fs");
 var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream')
 var methodOverride = require('method-override')
@@ -229,9 +231,9 @@ app.post('/admin/registration', function(req,res){
 
 //Upload
 app.post('/upload', upload.single('file'), (req,res) => {
-    //res.json({file: req.file});
     res.redirect('/admin/recipepage');
 });
+
 
 //Login
 app.get('/admin/login',function(req,res) {
