@@ -13,7 +13,7 @@ var methodOverride = require('method-override')
 const { urlencoded } = require("body-parser");
 const { connect } = require("http2");
 const { response } = require("express");
-
+const { body, validationResult } = require('express-validator');
 
 const port = 3000;
 const app = express()
@@ -193,7 +193,19 @@ app.post('/admin/registration', function(req,res){
      var name = req.body.name;
      var email = req.body.email;
      var password = req.body.password; 
-
+     var confirm=req.body.confirm;
+     var flag=0;
+    var validator = require("email-validator");
+    if(!validator.validate(email))
+    {
+        flag=1;
+    }
+    if(password==confirm)
+    {
+        flag=1;
+    }
+    if(flag==1)
+    {
      var data = {
          "name": name,
          "email": email,
@@ -227,6 +239,11 @@ app.post('/admin/registration', function(req,res){
             }
         }
     });
+}
+else
+{
+    return res.redirect('/admin/registration')
+}
 })
 
 //Upload
