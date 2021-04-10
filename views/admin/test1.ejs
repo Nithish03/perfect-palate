@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <form method="post">
+            <button class="btn btn-primary btn-block" type="submit">Test</button>
+        </form>
+        <div>
+            <a href="/getdetails">Get Details</a>
+        </div>
+            
+            
+            
+            <table>
+            <tr>
+                <th>Email</th>
+                <th>Stars</th>
+                <th>Review</th>
+                
+            </tr>
+            <%- review.forEach(function(item){ -%>
+            <tr>
+                <td><%= item.email%></td>
+                <td><%= item.stars %></td>
+                <td><%= item.review%></td>
+            
+            </tr>
+            <%- }) -%>
+            </table>
+            <!-- <%- } -%> -->
+        
+    </body>
+</html>

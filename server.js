@@ -320,6 +320,27 @@ app.post('/admin/recipepage', function(req,res){
                 return res.redirect('/admin/recipepage')
 })
 
+//review
+app.get('/',function(req,res) {
+    res.render(__dirname + "/admin/recipepage",{ details: null })
+    res.sendFile(__dirname + '/admin/recipepage')
+});
+
+//Review
+var details;
+app.post('/admin/recipepage', function(req,res){
+    
+     db.collection('review').find({}, function (err, review) {
+        if(err){
+            throw err;
+        }
+        else
+        {
+            console.log(review);
+            //res.render(__dirname + "/admin/recipepage", { details: review })
+        }
+    });    
+})
 
 app.listen(port);
 console.log("Listening on PORT 3000");
