@@ -30,7 +30,7 @@ const router = express.Router();
 
 // Middleware
 app.use("/static", express.static(__dirname + "/static"));
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(session({secret:"hgvjblihoiu89yhugb",resave:false,saveUninitialized:true}));
 
