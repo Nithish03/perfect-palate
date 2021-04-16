@@ -26,7 +26,7 @@ app.use(methodOverride('_method'));
 app.use(session({secret:"hgvjblihoiu89yhugb",resave:false,saveUninitialized:true}));
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname, {  index: '/admin/registration'}));
+app.use(express.static(__dirname, {  index: '/admin/test1'}));
 app.use(bodyParser.urlencoded({
      extended: false
 }));
@@ -59,7 +59,7 @@ app.post('/admin/test1', function(req,res)
         if (err) {
             console.log(err);
         } else {
-            res.render("test1", { review: reviews})
+            res.render('test1', { review: reviews})
         }
     }) 
  })
