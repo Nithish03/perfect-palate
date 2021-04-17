@@ -40,18 +40,13 @@ app.use(bodyParser.urlencoded({
      extended: false
 }));
 // MongoURI connection
-const mongoAtlasUri = "mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook";
-
-const conn = mongoose.createConnection(mongoAtlasUri);
+const conn = mongoose.createConnection('mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook', { useNewUrlParser: true, useUnifiedTopology: true });
 try {
-    mongoose.connect(mongoAtlasUri,{ useNewUrlParser: true, useUnifiedTopology: true },
+    mongoose.connect('mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook' , { useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log("Mongoose is connected"),);
     }catch(e) {
             console.log("Could not connect");
     }
-var db = mongoose.connection;
-db.on('error',()=>console.log("Error in Connecting to Database"));
-db.once('open',()=>console.log("Connected to Database"))
 
 
 // Init gridfs
@@ -64,7 +59,7 @@ conn.once('open', () => {
 
 // Creating storage engine
 const storage = new GridFsStorage({
-    url: mongoAtlasUri,
+    url: 'mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook',
     file: (req, file) => {
       return new Promise((resolve, reject) => {
         crypto.randomBytes(16, (err, buf) => {
@@ -100,15 +95,21 @@ app.get('/admin/contact-us',function(req, res) {
 app.get('/admin/recipe',function(req, res) {
     res.render("admin/recipe");
 });
-app.get('/admin/recipepage',function(req, res) {
-    res.render("admin/recipepage");
-});
+
 app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
 app.get('/admin/login',function(req, res) {
     res.render("admin/login");
 });
+
+app.get('/admin/recipepage', (req,res) => {
+    var db = mongoose.connection;
+    var collection = db.collection('review');
+    collection.find({}).toArray(function(err, review) {
+      res.render('admin/recipepage', {'review': review})
+    });  
+})
 
 app.get('/admin/recipereg',function(req, res) {
     gfs.files.find().toArray((err,files) => {
@@ -326,21 +327,23 @@ app.get('/',function(req,res) {
     res.sendFile(__dirname + '/admin/recipepage')
 });
 
-//Review
-var details;
-app.post('/admin/recipepage', function(req,res){
+
+
+// //Review
+// var details;
+// app.post('/admin/recipepage', function(req,res){
     
-     db.collection('review').find({}, function (err, review) {
-        if(err){
-            throw err;
-        }
-        else
-        {
-            console.log(review);
-            //res.render(__dirname + "/admin/recipepage", { details: review })
-        }
-    });    
-})
+//      db.collection('review').find({}, function (err, review) {
+//         if(err){
+//             throw err;
+//         }
+//         else
+//         {
+//             console.log(review);
+//             //res.render(__dirname + "/admin/recipepage", { details: review })
+//         }
+//     });    
+// })
 
 app.listen(port);
 console.log("Listening on PORT 3000");

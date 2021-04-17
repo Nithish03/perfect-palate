@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 app.use("/static", express.static(__dirname + "/static"));
 app.set('view engine', 'ejs')
 
-app.get('/review', (req,res) => {
+app.get('/admin/recipepage', (req,res) => {
     // let device_list = [{'name':'dht22'}, {'name':'tmp36'}]
     var db = mongoose.connection;
     var collection = db.collection('review');
