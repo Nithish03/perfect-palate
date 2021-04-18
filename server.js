@@ -48,6 +48,39 @@ try {
             console.log("Could not connect");
     }
 
+//recipe
+
+app.post('/admin/recipereg', function(req,res){
+    //console.log(`${req.session.collection.email}`);
+     //var email=req.session.collection.email;
+     var recipe = req.body.recipe;
+     var prep = req.body.prep;
+     var cook = req.body.cook;
+     var recipes = req.body.recipes;
+     var ingredients = req.body.ingredients;
+     var procedure = req.body.procedure;
+    
+     var data = {
+         //"email": email,
+         "recipe": recipe,
+         "prep": prep,
+         "cook": cook,
+         "recipes": recipes,
+         "ingredients": ingredients,
+         "procedure": procedure
+         
+     }
+     
+    
+                db.collection('recipe_post').insertOne(data,(err,collection) => {
+                    if(err){
+                        throw err;
+                    }
+                    console.log("Record Inserted Successfully");
+                });
+                return res.redirect('/admin/login')
+})
+
 
 // Init gridfs
 let gfs;

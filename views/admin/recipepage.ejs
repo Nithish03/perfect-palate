@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button-1.css">
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button.css">
     <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -68,8 +69,14 @@
                                 <h3 style="font-family: Montserrat, sans-serif;font-size: 18px;font-weight: normal;margin-top: 0px;padding-top: 0px;">    
                                   <% review.forEach(function(review){ %>
                                   <%= review.email%> <br>
+                                  <% var rating=review.stars%>
+                                  <% for(var i=0;i< rating;i++){ %>
+                                        <span style= " color: orange;" class="fa fa-star checked"></span>
+                                        
+                                 <% } %>
+                        
+                                 
                                   
-                                
                                   <!-- <div class="rating" style="width: 128px;height: 20px;margin-left: 0px;margin-top: 0px;margin-bottom: 0px;font-family: Montserrat, sans-serif;font-size: 10px;">
                                     <img src="/static/admin/img/star.svg" style="width: 19px;">
                                     <img src="/static/admin/img/star.svg" style="width: 19px;">
@@ -78,14 +85,21 @@
                                     <img src="/static/admin/img/star-empty.svg" style="width: 19px;">
                                     </div> -->
                                   <p style="font-family: Montserrat, sans-serif;width: 581px;height: 11px;margin-bottom: 16px;margin-left: 0px;"> <%= review.comment%> </p> 
+                                  <br>
                                   <% }); %>
+                                  
+
+                                  
+
+
                                 </h3> 
                                 <div class="container">
                                     <div class="row" style="margin-top:40px;">
                                         <div class="col-md-6">
                                         <div class="well well-sm">
                                             <div class="text-right">
-                                                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                                                <button class="btn btn-success btn-lg" type="submit">Leave a review</button>
+                                                <!-- <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a> -->
                                             </div>
                                         
                                             <div class="row" id="post-review-box" style="display:none;">
