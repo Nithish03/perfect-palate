@@ -47,7 +47,7 @@ try {
     }catch(e) {
             console.log("Could not connect");
     }
-
+var db = mongoose.connection;
 //recipe
 
 app.post('/admin/recipereg', function(req,res){
