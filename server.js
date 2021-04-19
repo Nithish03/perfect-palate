@@ -183,7 +183,7 @@ app.get('/admin/recipepage', (req,res) => {
     
     db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
         if(!err) {
-            res.render('admin/recipepage', {'recipe_post': recipe})
+            res.render('admin/recipepage', {'recipe_post': recipe});
         } else {
             console.log(err);
         }
