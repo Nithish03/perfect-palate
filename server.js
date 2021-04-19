@@ -19,6 +19,9 @@ const port = 3000;
 const app = express()
 const router = express.Router();
 
+
+router.use(express.static(__dirname+ "/uploads"));
+
 // app.use(session({
 //     name: "session-id",
 //     secret: "GFGEnter", // Secret key,
@@ -50,66 +53,87 @@ try {
 var db = mongoose.connection;
 //recipe
 
-app.post('/admin/recipereg', function(req,res){
-    //console.log(`${req.session.collection.email}`);
-     //var email=req.session.collection.email;
-     var recipe = req.body.recipe;
-     var prep = req.body.prep;
-     var cook = req.body.cook;
-     var recipes = req.body.recipes;
-     var ingredients = req.body.ingredients;
-     var procedure = req.body.procedure;
+// app.post('/admin/recipereg', function(req,res){
+//     //console.log(`${req.session.collection.email}`);
+//      //var email=req.session.collection.email;
+//      var recipe = req.body.recipe;
+//      var prep = req.body.prep;
+//      var cook = req.body.cook;
+//      var recipes = req.body.recipes;
+//      var ingredients = req.body.ingredients;
+//      var procedure = req.body.procedure;
     
-     var data = {
-         //"email": email,
-         "recipe": recipe,
-         "prep": prep,
-         "cook": cook,
-         "recipes": recipes,
-         "ingredients": ingredients,
-         "procedure": procedure
+//      var data = {
+//          //"email": email,
+//          "recipe": recipe,
+//          "prep": prep,
+//          "cook": cook,
+//          "recipes": recipes,
+//          "ingredients": ingredients,
+//          "procedure": procedure
          
-     }
+//      }
      
     
-                db.collection('recipe_post').insertOne(data,(err,collection) => {
-                    if(err){
-                        throw err;
-                    }
-                    console.log("Record Inserted Successfully");
-                });
-                return res.redirect('/admin/login')
-})
+//                 db.collection('recipe_post').insertOne(data,(err,collection) => {
+//                     if(err){
+//                         throw err;
+//                     }
+//                     console.log("Record Inserted Successfully");
+//                 });
+//                 return res.redirect('/admin/login')
+// })
 
 
 // Init gridfs
-let gfs;
+// let gfs;
 
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection('uploads');
-})
+// conn.once('open', () => {
+//     gfs = Grid(conn.db, mongoose.mongo);
+//     gfs.collection('uploads');
+// })
 
 // Creating storage engine
-const storage = new GridFsStorage({
-    url: 'mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook',
-    file: (req, file) => {
-      return new Promise((resolve, reject) => {
-        crypto.randomBytes(16, (err, buf) => {
-          if (err) {
-            return reject(err);
-          }
-          const filename = buf.toString('hex') + path.extname(file.originalname);
-          const fileInfo = {
-            filename: filename,
-            bucketName: 'uploads'
-          };
-          resolve(fileInfo);
-        });
-      });
+// const storage = new GridFsStorage({
+//     url: 'mongodb+srv://Recipe_book:recipe@database.plch0.mongodb.net/RecipeBook',
+//     file: (req, file) => {
+//       return new Promise((resolve, reject) => {
+//         crypto.randomBytes(16, (err, buf) => {
+//           if (err) {
+//             return reject(err);
+//           }
+//           const filename = buf.toString('hex') + path.extname(file.originalname);
+//           const fileInfo = {
+//             filename: filename,
+//             bucketName: 'uploads'
+//           };
+//           resolve(fileInfo);
+//         });
+//       });
+//     }
+//   });
+//   const upload = multer({ storage });
+
+var Storage = multer.diskStorage({
+    destination:"./uploads",
+    filename:(req,file,cb) => {
+        cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
     }
+});
+
+var upload = multer({
+    storage: Storage
+}).single('file');
+
+  var recipeSchema = new mongoose.Schema({
+      recipe: String,
+      prep: Number,
+      cook: Number,
+      category: String,
+      ingredients: String,
+      procedure: String,
+      image: String,
   });
-  const upload = multer({ storage });
 
 // Converting to ejs //
 // @route GET
@@ -144,24 +168,24 @@ app.get('/admin/recipepage', (req,res) => {
     });  
 })
 
-app.get('/admin/recipereg',function(req, res) {
-    gfs.files.find().toArray((err,files) => {
-        // Check if files
-        if(!files || files.length ===0) {
-            res.render('index', {files: false});
-         } else {
-             files.map(file => {
-                 if(file.contentType == 'image/jpeg' || file.contentType == 'image/png') 
-                 {
-                    file.isImage = true;
-                 } else {
-                     file.isImage = false;
-                 }
-             });
-             res.render('index', {files: files});
-         }
-    });
-});
+// app.get('/admin/recipereg',function(req, res) {
+//     gfs.files.find().toArray((err,files) => {
+//         // Check if files
+//         if(!files || files.length ===0) {
+//             res.render('index', {files: false});
+//          } else {
+//              files.map(file => {
+//                  if(file.contentType == 'image/jpeg' || file.contentType == 'image/png') 
+//                  {
+//                     file.isImage = true;
+//                  } else {
+//                      file.isImage = false;
+//                  }
+//              });
+//              res.render('index', {files: files});
+//          }
+//     });
+// });
 
 
 // Get /files
@@ -281,8 +305,16 @@ else
 })
 
 //Upload
-app.post('/upload', upload.single('file'), (req,res) => {
-    res.redirect('/admin/recipepage');
+app.post('/upload', upload, function(req,res,next) {
+    var recipereg = {
+        recipe: req.body.recipe,
+        prep: req.body.prep,
+        cook: req.body.cook,
+        category: req.body.recipes,
+        ingredients: req.body.ingredients,
+        procedure: req.body.procedure,
+        image: req.file.filename,
+    };
 });
 
 
