@@ -19,6 +19,9 @@ const port = 3000;
 const app = express()
 const router = express.Router();
 
+// const http = require('http');
+// const url = require('url');
+
 
 router.use(express.static(__dirname+ "/uploads"));
 
@@ -144,13 +147,18 @@ app.get('/admin/registration',function(req, res) {
     res.render("admin/registration");
 });
 app.get('/admin/categories',function(req, res) {
+     
     res.render("admin/categories");
 });
 app.get('/admin/contact-us',function(req, res) {
     res.render("admin/contact-us");
 });
 app.get('/admin/recipe',function(req, res) {
-    res.render("admin/recipe");
+    var db = mongoose.connection;
+    var collection = db.collection('recipe_post');
+    collection.find({}).toArray(function(err, recipe) {
+      res.render('admin/recipe', {'recipe_post': recipe})
+    });  
 });
 
 app.get('/admin/recipereg',function(req, res) {
@@ -160,12 +168,36 @@ app.get('/admin/login',function(req, res) {
     res.render("admin/login");
 });
 
+// http.createServer(function (req, res) {
+//     const queryObject = url.parse(req.url,true).query;
+//     console.log(queryObject);
+  
+//     res.writeHead(200, {'Content-Type': 'text/html'});
+//     res.end('Feel free to add query parameters to the end of the url');
+//   }).listen(8080);
+
 app.get('/admin/recipepage', (req,res) => {
+    var id=req.query.id;
+    console.log(`${id}`);
     var db = mongoose.connection;
-    var collection = db.collection('review');
-    collection.find({}).toArray(function(err, review) {
-      res.render('admin/recipepage', {'review': review})
-    });  
+    
+    db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
+        if(!err) {
+            res.render('admin/recipepage', {'recipe_post': recipe})
+        } else {
+            console.log(err);
+        }
+        console.log(recipe);
+      });
+    // collection.find({}).toArray(function(err, recipe) {
+    //   res.render('admin/recipepage', {'recipe_post': recipe})
+    // });  
+    
+    // var collection = db.collection('review');
+    // collection.find({}).toArray(function(err, review) {
+    //   res.render('admin/recipepage', {'review': review})
+    // });  
+
 })
 
 // app.get('/admin/recipereg',function(req, res) {
