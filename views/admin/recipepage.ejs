@@ -38,12 +38,12 @@
     <main class="page">
         <section class="clean-block features">
             <section class="article-clean">
-                <!-- <% recipe_post.forEach(function(r){ %> -->
+                <% recipe_post.forEach(function(r){ %> 
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                             <div class="intro">
-                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;">Recipe Name</h1>
+                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;">r.receipe</h1>
                                 <div class="rating" style="width: 132px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
@@ -68,14 +68,14 @@
                                     <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
                                 <h2 style="font-family: Montserrat, sans-serif;font-size: 28px;font-weight: normal;">Reviews</h2>
                                 <h3 style="font-family: Montserrat, sans-serif;font-size: 18px;font-weight: normal;margin-top: 0px;padding-top: 0px;">    
-                                  <% review.forEach(function(review){ %>
+                                  <!-- <% review.forEach(function(review){ %>
                                   <%= review.email%> <br>
                                   <% var rating=review.stars%>
                                   <% for(var i=0;i< rating;i++){ %>
                                         <span style= " color: orange;" class="fa fa-star checked"></span>
                                         
-                                 <% } %>
-                        
+                                 <% } %> -->
+                                 <% }); %>
                                  
                                   
                                   <!-- <div class="rating" style="width: 128px;height: 20px;margin-left: 0px;margin-top: 0px;margin-bottom: 0px;font-family: Montserrat, sans-serif;font-size: 10px;">
@@ -87,7 +87,7 @@
                                     </div> -->
                                   <p style="font-family: Montserrat, sans-serif;width: 581px;height: 11px;margin-bottom: 16px;margin-left: 0px;"> <%= review.comment%> </p> 
                                   <br>
-                                  <% }); %>
+                                  
                                   
 
                                   
