@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
@@ -39,10 +39,11 @@
         <section class="clean-block features">
             <section class="article-clean"> 
                 <div class="container">
+                    <% recipe_post.forEach(function(recipe_post){ %>
                     <div class="row">
                         <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                             <div class="intro">
-                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%=recipe_post.recipe%></h1>
+                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%= recipe_post.recipe %></h1>
                                 <div class="rating" style="width: 132px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
@@ -52,29 +53,39 @@
                                     <p style="margin-left: 144px;margin-bottom: 0px;margin-top: -26px;font-size: 19px;">4/5</p>
                                 </div>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 0px;"><br>
-                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%=recipe_post.prep%></span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%></span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%= recipe_post.prep %></span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%></span></p>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 15px;"> 
-                                    <span class="by" style="font-family: Montserrat, sans-serif;">Category: <%=recipe_post.recipes%>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;"></span></span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;">Category: <%= recipe_post.recipes %>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;"></span></span></p>
                                     <img class="img-fluid" src="/static/admin/img/desk.jpg">
                                 <div class="rating"></div>
                             </div>
                             <h2 style="font-family: Montserrat, sans-serif;">Ingredients</h2>
                             <h2 style="font-family: Montserrat, sans-serif;margin-right: 0px;margin-left: 417px;margin-top: -46px;width: 354px;">Cooking Instruction</h2>
                             <div class="text">
-                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;"><%=recipe_post.ingredients%>
-                                    <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;margin-left: 421px;margin-top: -268px;">Sed lobortis mi. Suspendisse vel placerat ligula. 
-                                    <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-                                <h2 style="font-family: Montserrat, sans-serif;font-size: 28px;font-weight: normal;">Reviews</h2>
-                                <h3 style="font-family: Montserrat, sans-serif;font-size: 18px;font-weight: normal;margin-top: 0px;padding-top: 0px;">    
-                                  <!-- <% review.forEach(function(review){ %>
-                                  <%= review.email%> <br>
-                                  <% var rating=review.stars%>
-                                  <% for(var i=0;i< rating;i++){ %>
-                                        <span style= " color: orange;" class="fa fa-star checked"></span>
+                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;"><% var res = recipe_post.ingredients.split(",") %>
+                                    <% for(var i=0;i<res.length;i++){ %>
+                                        <%= res[i] %>
+                                        <br>
                                         
-                                 <% } %> -->
-
+                                 <% } %>
+                                </p>
+                                   
+                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;margin-left: 421px;margin-top: -268px;"> <%=recipe_post.procedure%> </p>
+                                    
+                                    <% }); %>
+                                    <h2 style="font-family: Montserrat, sans-serif;font-size: 28px;font-weight: normal;">Reviews</h2>
+                                <h3 style="font-family: Montserrat, sans-serif;font-size: 18px;font-weight: normal;margin-top: 0px;padding-top: 0px;">    
+                                   
+                                    <% review.forEach(function(review){ %>
+                                        <%= review.email%> <br>
+                                        <% var rating=review.stars%>
+                                        <% for(var i=0;i< rating;i++){ %>
+                                              <span style= " color: orange;" class="fa fa-star checked"></span>
+                                              
+                                       <% } %>
+                                        <p style="font-family: Montserrat, sans-serif;width: 581px;height: 11px;margin-bottom: 16px;margin-left: 0px;"> <%= review.comment%> </p> 
+                                        <br>
+                                        <% }) %>
                                  
                                   
                                   <!-- <div class="rating" style="width: 128px;height: 20px;margin-left: 0px;margin-top: 0px;margin-bottom: 0px;font-family: Montserrat, sans-serif;font-size: 10px;">
@@ -84,8 +95,7 @@
                                     <img src="/static/admin/img/star-half-empty.svg" style="width: 19px;">
                                     <img src="/static/admin/img/star-empty.svg" style="width: 19px;">
                                     </div> -->
-                                  <p style="font-family: Montserrat, sans-serif;width: 581px;height: 11px;margin-bottom: 16px;margin-left: 0px;"> <%= review.comment%> </p> 
-                                  <br>
+                                  
                                   
                                   
 
@@ -98,9 +108,9 @@
                                         <div class="col-md-6">
                                         <div class="well well-sm">
                                             <div class="text-right">
-                                                <button class="btn btn-success btn-lg" type="submit">Leave a review</button>
+                                                <button class="btn btn-success btn-lg" type="submit">Leave a review</button> 
                                                 <!-- <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a> -->
-                                            </div>
+                                             </div>
                                         
                                             <div class="row" id="post-review-box" style="display:none;">
                                                 <div class="col-md-12">
@@ -146,4 +156,4 @@
     <script src="/static//js/Review-rating-Star-Review-Button.js"></script>
 </body>
 
-</html>
+</html>  
