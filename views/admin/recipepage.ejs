@@ -37,13 +37,12 @@
     </nav>
     <main class="page">
         <section class="clean-block features">
-            <section class="article-clean">
-                <% recipe_post.forEach(function(r){ %> 
+            <section class="article-clean"> 
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                             <div class="intro">
-                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;">r.receipe</h1>
+                                <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%=recipe_post.recipe%></h1>
                                 <div class="rating" style="width: 132px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
                                     <img src="/static/admin/img/star.svg" style="width: 22px;">
@@ -53,16 +52,16 @@
                                     <p style="margin-left: 144px;margin-bottom: 0px;margin-top: -26px;font-size: 19px;">4/5</p>
                                 </div>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 0px;"><br>
-                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: #</span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: #</span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%=recipe_post.prep%></span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%></span></p>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 15px;"> 
-                                    <span class="by" style="font-family: Montserrat, sans-serif;">Category: #&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;"></span></span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;">Category: <%=recipe_post.recipes%>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;"></span></span></p>
                                     <img class="img-fluid" src="/static/admin/img/desk.jpg">
                                 <div class="rating"></div>
                             </div>
                             <h2 style="font-family: Montserrat, sans-serif;">Ingredients</h2>
                             <h2 style="font-family: Montserrat, sans-serif;margin-right: 0px;margin-left: 417px;margin-top: -46px;width: 354px;">Cooking Instruction</h2>
                             <div class="text">
-                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;">Sed lobortis mi. Suspendisse vel placerat ligula. 
+                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;"><%=recipe_post.ingredients%>
                                     <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
                                 <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;margin-left: 421px;margin-top: -268px;">Sed lobortis mi. Suspendisse vel placerat ligula. 
                                     <span style="text-decoration: underline;">Vivamus</span> ac sem lac. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
@@ -75,7 +74,7 @@
                                         <span style= " color: orange;" class="fa fa-star checked"></span>
                                         
                                  <% } %> -->
-                                 <% }); %>
+
                                  
                                   
                                   <!-- <div class="rating" style="width: 128px;height: 20px;margin-left: 0px;margin-top: 0px;margin-bottom: 0px;font-family: Montserrat, sans-serif;font-size: 10px;">
@@ -148,12 +147,3 @@
 </body>
 
 </html>
-
-<!-- Example -->
-<!-- <ul>
-    <% review.forEach(function(review){ %>
-      <li><%= review.email%></li>
-      <li><%= review.stars%></li>
-      <li><%= review.comment%></li> <br>
-    <% }); %>
-</ul> -->

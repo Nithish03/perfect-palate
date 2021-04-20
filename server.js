@@ -175,30 +175,34 @@ app.get('/admin/login',function(req, res) {
 //     res.writeHead(200, {'Content-Type': 'text/html'});
 //     res.end('Feel free to add query parameters to the end of the url');
 //   }).listen(8080);
-
-app.get('/admin/recipepage', (req,res) => {
-    var id=req.query.id;
-    console.log(`${id}`);
-    var db = mongoose.connection;
+    app.get('/admin/recipepage', (req,res) => {
+        var id=req.query.id;
+        console.log(`${id}`);
+        //var db = mongoose.connection;
+        var db = mongoose.connection;
+    var collection = db.collection('recipe_post');
+    collection.find({'id':id}).toArray(function(err, recipe) {
+      res.render('admin/recipepage', {'recipe_post': recipe})
+    });
+});  
+        // db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
+        //     if(!err) {
+        //         res.render('admin/recipepage', {'recipe_post': recipe});
+        //     } else {
+        //         console.log(err);
+        //     }
+        //     console.log(recipe);
+        //   });
+        // collection.find({}).toArray(function(err, recipe) {
+        //   res.render('admin/recipepage', {'recipe_post': recipe})
+        // });  
+        
+        // var collection = db.collection('review');
+        // collection.find({}).toArray(function(err, review) {
+        //   res.render('admin/recipepage', {'review': review})
+        // });  
     
-    db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
-        if(!err) {
-            res.render('admin/recipepage', {'recipe_post': recipe});
-        } else {
-            console.log(err);
-        }
-        console.log(recipe);
-      });
-    // collection.find({}).toArray(function(err, recipe) {
-    //   res.render('admin/recipepage', {'recipe_post': recipe})
-    // });  
     
-    // var collection = db.collection('review');
-    // collection.find({}).toArray(function(err, review) {
-    //   res.render('admin/recipepage', {'review': review})
-    // });  
-
-})
 
 // app.get('/admin/recipereg',function(req, res) {
 //     gfs.files.find().toArray((err,files) => {
