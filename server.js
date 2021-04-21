@@ -56,7 +56,7 @@ try {
 var db = mongoose.connection;
 //recipe
 
-app.post('/upload', function(req,res){
+app.post('/admin/recipereg', function(req,res){
     //console.log(`${req.session.collection.email}`);
     //  var email=req.session.collection.email;
      var recipe = req.body.recipe;
@@ -164,9 +164,6 @@ app.get('/admin/login',function(req, res) {
 //     res.end('Feel free to add query parameters to the end of the url');
 //   }).listen(8080);
 
-app.get('/admin/recipereg',function(req, res) {
-    res.render("admin/recipereg");
-});
 
     app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
@@ -331,20 +328,6 @@ else
     return res.redirect('/admin/registration')
 }
 })
-
-//Upload
-app.post('/upload', upload, function(req,res,next) {
-    var recipereg = {
-        recipe: req.body.recipe,
-        prep: req.body.prep,
-        cook: req.body.cook,
-        category: req.body.recipes,
-        ingredients: req.body.ingredients,
-        procedure: req.body.procedure,
-        image: req.file.filename,
-    };
-});
-
 
 //Login
 app.get('/admin/login',function(req,res) {
