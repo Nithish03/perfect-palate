@@ -56,36 +56,34 @@ try {
 var db = mongoose.connection;
 //recipe
 
-// app.post('/admin/recipereg', function(req,res){
-//     //console.log(`${req.session.collection.email}`);
-//      //var email=req.session.collection.email;
-//      var recipe = req.body.recipe;
-//      var prep = req.body.prep;
-//      var cook = req.body.cook;
-//      var recipes = req.body.recipes;
-//      var ingredients = req.body.ingredients;
-//      var procedure = req.body.procedure;
+app.post('/upload', function(req,res){
+    //console.log(`${req.session.collection.email}`);
+    //  var email=req.session.collection.email;
+     var recipe = req.body.recipe;
+     var prep = req.body.prep;
+     var cook = req.body.cook;
+     var recipes = req.body.recipes;
+     var ingredients = req.body.ingredients;
+     var procedure = req.body.procedure;
     
-//      var data = {
-//          //"email": email,
-//          "recipe": recipe,
-//          "prep": prep,
-//          "cook": cook,
-//          "recipes": recipes,
-//          "ingredients": ingredients,
-//          "procedure": procedure
+     var data = {
+        //  "email": email,
+         "recipe": recipe,
+         "prep": prep,
+         "cook": cook,
+         "recipes": recipes,
+         "ingredients": ingredients,
+         "procedure": procedure
          
-//      }
-     
-    
-//                 db.collection('recipe_post').insertOne(data,(err,collection) => {
-//                     if(err){
-//                         throw err;
-//                     }
-//                     console.log("Record Inserted Successfully");
-//                 });
-//                 return res.redirect('/admin/login')
-// })
+     }
+    db.collection('recipe_post').insertOne(data,(err,collection) => {
+        if(err){
+        throw err;
+        }
+        console.log("Record Inserted Successfully");
+        });
+        return res.redirect('/admin/categories')
+})
 
 
 // Init gridfs
@@ -107,7 +105,7 @@ var db = mongoose.connection;
 //           }
 //           const filename = buf.toString('hex') + path.extname(file.originalname);
 //           const fileInfo = {
-//             filename: filename,
+//             
 //             bucketName: 'uploads'
 //           };
 //           resolve(fileInfo);
@@ -128,15 +126,6 @@ var upload = multer({
     storage: Storage
 }).single('file');
 
-  var recipeSchema = new mongoose.Schema({
-      recipe: String,
-      prep: Number,
-      cook: Number,
-      category: String,
-      ingredients: String,
-      procedure: String,
-      image: String,
-  });
 
 // Converting to ejs //
 // @route GET
