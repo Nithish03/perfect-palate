@@ -56,34 +56,6 @@ try {
 var db = mongoose.connection;
 //recipe
 
-app.post('/upload', function(req,res){
-    //console.log(`${req.session.collection.email}`);
-    //  var email=req.session.collection.email;
-     var recipe = req.body.recipe;
-     var prep = req.body.prep;
-     var cook = req.body.cook;
-     var recipes = req.body.recipes;
-     var ingredients = req.body.ingredients;
-     var procedure = req.body.procedure;
-    
-     var data = {
-        //  "email": email,
-         "recipe": recipe,
-         "prep": prep,
-         "cook": cook,
-         "recipes": recipes,
-         "ingredients": ingredients,
-         "procedure": procedure
-         
-     }
-    db.collection('recipe_post').insertOne(data,(err,collection) => {
-        if(err){
-        throw err;
-        }
-        console.log("Record Inserted Successfully");
-        });
-        return res.redirect('/admin/categories')
-})
 
 
 // Init gridfs
@@ -143,8 +115,9 @@ app.get('/admin/contact-us',function(req, res) {
 });
 app.get('/admin/recipe',function(req, res) {
     var db = mongoose.connection;
+    var food=req.query.id;
     var collection = db.collection('recipe_post');
-    collection.find({}).toArray(function(err, recipe) {
+    collection.find({'recipes':food}).toArray(function(err, recipe) {
       res.render('admin/recipe', {'recipe_post': recipe})
     });  
 });
@@ -167,15 +140,45 @@ app.get('/admin/login',function(req, res) {
 app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
-
+    var recipe_post=[];
+    var review=[];
     app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
         console.log(`${id}`);
         var collection = db.collection('recipe_post');
-        
         collection.find({'id':id}).toArray(function(err, recipe) {
-        res.render('admin/recipepage', {'recipe_post': recipe})
+            if(err)
+            {
+                throw err;
+            }
+            else
+            {
+                for(var i=0;i<recipe.length;i++)
+                {
+                    recipe_post[i]=recipe[i];
+                }
+            }
+        //res.render('admin/recipepage', {'recipe_post': recipe})
     });
+    var collection1 = db.collection('review');
+        collection1.find({}).toArray(function(err, r) {
+            if(err)
+            {
+                throw err;
+            }
+            else
+            {
+                for(var i=0;i<r.length;i++)
+                {
+                    review[i]=r[i];
+                }
+            }
+        //res.render('admin/recipepage', {'recipe_post': recipe})
+    });
+    res.render('admin/recipepage', {
+        recipe_post: recipe_post,
+        review: review
+      });
 });  
         // db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
         //     if(!err) {
@@ -215,6 +218,39 @@ app.get('/admin/recipereg',function(req, res) {
 //     });
 // });
 
+//recipe_reg:
+app.get('/admin/recipereg',function(req,res) {
+    res.render('recipe');
+    res.sendFile(__dirname + '/admin/recipereg')
+});
+app.post('/admin/recipereg', function(req,res){
+    //console.log(`${req.session.collection.email}`);
+    //  var email=req.session.collection.email;
+     var recipe = req.body.recipe;
+     var prep = req.body.prep;
+     var cook = req.body.cook;
+     var recipes = req.body.recipes;
+     var ingredients = req.body.ingredients;
+     var procedure = req.body.procedure;
+     console.log(`${recipe} ${prep}`);
+     var data = {
+        //  "email": email,
+         "recipe": recipe,
+         "prep": prep,
+         "cook": cook,
+         "recipes": recipes,
+         "ingredients": ingredients,
+         "procedure": procedure
+         
+     }
+    db.collection('recipe_post').insertOne(data,(err,collection) => {
+        if(err){
+        throw err;
+        }
+        console.log("Record Inserted Successfully");
+        });
+        return res.redirect('/admin/categories')
+})
 
 // Get /files
 // Displaiyng files
@@ -332,20 +368,6 @@ else
 }
 })
 
-//Upload
-app.post('/upload', upload, function(req,res,next) {
-    var recipereg = {
-        recipe: req.body.recipe,
-        prep: req.body.prep,
-        cook: req.body.cook,
-        category: req.body.recipes,
-        ingredients: req.body.ingredients,
-        procedure: req.body.procedure,
-        image: req.file.filename,
-    };
-});
-
-
 //Login
 app.get('/admin/login',function(req,res) {
     res.render('login-form');
@@ -419,24 +441,6 @@ app.get('/',function(req,res) {
     res.render(__dirname + "/admin/recipepage",{ details: null })
     res.sendFile(__dirname + '/admin/recipepage')
 });
-
-
-
-// //Review
-// var details;
-// app.post('/admin/recipepage', function(req,res){
-    
-//      db.collection('review').find({}, function (err, review) {
-//         if(err){
-//             throw err;
-//         }
-//         else
-//         {
-//             console.log(review);
-//             //res.render(__dirname + "/admin/recipepage", { details: review })
-//         }
-//     });    
-// })
 
 app.listen(port);
 console.log("Listening on PORT 3000");
