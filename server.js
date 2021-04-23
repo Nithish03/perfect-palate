@@ -141,6 +141,23 @@ app.get('/admin/categories',function(req, res) {
 app.get('/admin/contact-us',function(req, res) {
     res.render("admin/contact-us");
 });
+
+
+app.get('/admin/myrecipe',function(req, res) {
+    var db = mongoose.connection;
+    var email= req.session.collection.email;
+    
+    var collection = db.collection('recipe_post');
+    collection.find({'email':email}).toArray(function(err, recipe) {
+      res.render('admin/myrecipe', {'recipe_post': recipe})
+    }); 
+    
+});
+
+
+
+
+
 app.get('/admin/recipe',function(req, res) {
     var db = mongoose.connection;
     var food=req.query.id;
@@ -164,7 +181,7 @@ app.get('/admin/login',function(req, res) {
 //     res.writeHead(200, {'Content-Type': 'text/html'});
 //     res.end('Feel free to add query parameters to the end of the url');
 //   }).listen(8080);
-
+// 
 app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
@@ -208,25 +225,9 @@ app.get('/admin/recipereg',function(req, res) {
         review: review
       });
 });  
-        // db.collection('recipe_post').find({"id": id}).toArray((err,recipe) => {
-        //     if(!err) {
-        //         res.render('admin/recipepage', {'recipe_post': recipe});
-        //     } else {
-        //         console.log(err);
-        //     }
-        //     console.log(recipe);
-        //   });
-        // collection.find({}).toArray(function(err, recipe) {
-        //   res.render('admin/recipepage', {'recipe_post': recipe})
-        // });  
-        
-        // var collection = db.collection('review');
-        // collection.find({}).toArray(function(err, review) {
-        //   res.render('admin/recipepage', {'review': review})
-        // });  
+         
     
     
-
 // app.get('/admin/recipereg',function(req, res) {
 //     gfs.files.find().toArray((err,files) => {
 //         // Check if files
@@ -245,7 +246,7 @@ app.get('/admin/recipereg',function(req, res) {
 //          }
 //     });
 // });
-
+        
 //recipe_reg:
 app.get('/admin/recipereg',function(req,res) {
     res.render('recipe');
