@@ -193,8 +193,9 @@ app.get('/admin/recipereg',function(req, res) {
     app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
         console.log(`${id}`);
-        var o_id = new ObjectId(id);   // id as a string is passed
-        //db.collection.findOne({"_id":o_id});
+        var o_id = new ObjectId(id); 
+        var k;
+        var rating_count=0;
         var collection = db.collection('recipe_post');
         collection.find({"_id":o_id}).toArray(function(err, recipe) {
             if(err)
@@ -203,7 +204,6 @@ app.get('/admin/recipereg',function(req, res) {
             }
             else
             {
-                console.log(recipe);
                 for(var i=0;i<recipe.length;i++)
                 {
                     recipe_post[i]=recipe[i];
@@ -221,14 +221,18 @@ app.get('/admin/recipereg',function(req, res) {
             {
                 for(var i=0;i<r.length;i++)
                 {
+                    var c=r[i].stars;
+                    rating_count=parseInt(rating_count)+parseInt(c);
                     review[i]=r[i];
                 }
             }
-        //res.render('admin/recipepage', {'recipe_post': recipe})
+            
     });
+    console.log(`${rating_count} rating count `);
     res.render('admin/recipepage', {
         recipe_post: recipe_post,
-        review: review
+        review: review,
+        //count:rating_count/4
       });
 });  
          
