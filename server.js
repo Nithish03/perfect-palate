@@ -193,19 +193,21 @@ app.get('/admin/recipepage', (req,res) => {
             {
                 for(var i=0;i<r.length;i++)
                 {
-                    var c=r[i].stars;
-                    rating_count=parseInt(rating_count)+parseInt(c);
+                    //var c=r[i].stars;
+                    //rating_count=parseInt(rating_count)+parseInt(c);
                     review[i]=r[i];
                 }
             }
-            
+              
     });
-    console.log(`${rating_count} rating count `);
+    //console.log(`${rating_count} rating count `);
     res.render('admin/recipepage', {
         recipe_post: recipe_post,
         review: review,
         //count:rating_count/4
       });
+    recipe_post=[];
+    review=[];
 });  
          
     
