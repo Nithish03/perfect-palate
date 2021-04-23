@@ -429,11 +429,12 @@ app.post('/admin/recipepage', function(req,res){
      var stars = req.body.stars;
      var comment = req.body.comment;
      var recipe_id= req.query.id;
+     
      var data = {
          "name": user_name,
          "stars": stars,
          "comment": comment,
-         "recipe_id": recipe_id
+         "recipe_id": recipe_id  
      }
      console.log(`${stars} and password is ${comment}`)
      

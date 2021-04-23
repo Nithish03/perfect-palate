@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="10">
+    
     <title>Recipe Page - Perfect Palate</title>
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
@@ -16,9 +16,18 @@
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button.css">
     <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        window.onload = function() {
+	if(!window.location.hash) {
+		window.location = window.location + '#loaded';
+		window.location.reload();
+	}
+}
+    </script>
 </head>
 
-<body>
+<body >
+     
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container">
             <a class="navbar-brand logo" href="/admin/categories">Perfect Palate</a>
