@@ -438,14 +438,13 @@ app.post('/admin/recipepage', function(req,res){
          "comment": comment,
          "recipe_id": recipe_id  
      }
-     console.log(`${stars} and password is ${comment}`)
-     
+    // console.log(`${stars} and password is ${comment}`)
     
                 db.collection('review').insertOne(data,(err,collection) => {
                     if(err){
                         throw err;
                     }
-                    console.log("Record Inserted Successfully");
+                    //console.log("Record Inserted Successfully");
                 });
                 return res.redirect('/admin/recipepage')
 })
