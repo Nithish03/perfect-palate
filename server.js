@@ -14,6 +14,7 @@ const { urlencoded } = require("body-parser");
 const { connect } = require("http2");
 const { response } = require("express");
 const { body, validationResult } = require('express-validator');
+var ObjectId = require('mongodb').ObjectID;
 
 const port = 3000;
 const app = express()
@@ -185,19 +186,24 @@ app.get('/admin/login',function(req, res) {
 app.get('/admin/recipereg',function(req, res) {
     res.render("admin/recipereg");
 });
+
+//rendering values in recipe page
     var recipe_post=[];
     var review=[];
     app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
         console.log(`${id}`);
+        var o_id = new ObjectId(id);   // id as a string is passed
+        //db.collection.findOne({"_id":o_id});
         var collection = db.collection('recipe_post');
-        collection.find({'id':id}).toArray(function(err, recipe) {
+        collection.find({"_id":o_id}).toArray(function(err, recipe) {
             if(err)
             {
                 throw err;
             }
             else
             {
+                console.log(recipe);
                 for(var i=0;i<recipe.length;i++)
                 {
                     recipe_post[i]=recipe[i];
@@ -206,7 +212,7 @@ app.get('/admin/recipereg',function(req, res) {
         //res.render('admin/recipepage', {'recipe_post': recipe})
     });
     var collection1 = db.collection('review');
-        collection1.find({}).toArray(function(err, r) {
+        collection1.find({"recipe_id":id}).toArray(function(err, r) {
             if(err)
             {
                 throw err;
@@ -446,12 +452,12 @@ app.post('/admin/recipepage', function(req,res){
      var user_name=req.session.collection.name;
      var stars = req.body.stars;
      var comment = req.body.comment;
-    
+     var recipe_id= req.query.id;
      var data = {
          "name": user_name,
          "stars": stars,
-         "comment": comment
-         
+         "comment": comment,
+         "recipe_id": recipe_id
      }
      console.log(`${stars} and password is ${comment}`)
      

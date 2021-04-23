@@ -20,6 +20,7 @@
   "dependencies": {
     "alert": "^5.0.10",
     "body-parser": "^1.19.0",
+    "bson-objectid": "^2.0.1",
     "connect": "^3.7.0",
     "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
