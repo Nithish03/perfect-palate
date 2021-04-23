@@ -55,7 +55,36 @@ try {
             console.log("Could not connect");
     }
 var db = mongoose.connection;
+//recipe
 
+app.post('/admin/recipereg', function(req,res){
+    //console.log(`${req.session.collection.email}`);
+    //  var email=req.session.collection.email;
+     var recipe = req.body.recipe;
+     var prep = req.body.prep;
+     var cook = req.body.cook;
+     var recipes = req.body.recipes;
+     var ingredients = req.body.ingredients;
+     var procedure = req.body.procedure;
+    
+     var data = {
+        //  "email": email,
+         "recipe": recipe,
+         "prep": prep,
+         "cook": cook,
+         "recipes": recipes,
+         "ingredients": ingredients,
+         "procedure": procedure
+         
+     }
+    db.collection('recipe_post').insertOne(data,(err,collection) => {
+        if(err){
+        throw err;
+        }
+        console.log("Record Inserted Successfully");
+        });
+        return res.redirect('/admin/categories')
+})
 
 
 // Init gridfs
@@ -133,7 +162,6 @@ app.get('/admin/myrecipe',function(req, res) {
 app.get('/admin/recipe',function(req, res) {
     var db = mongoose.connection;
     var food=req.query.id;
-    
     var collection = db.collection('recipe_post');
     collection.find({'recipes':food}).toArray(function(err, recipe) {
       res.render('admin/recipe', {'recipe_post': recipe})
@@ -160,9 +188,9 @@ app.get('/admin/recipereg',function(req, res) {
 });
 
 //rendering values in recipe page
-var recipe_post=[];
-var review=[];
-app.get('/admin/recipepage', (req,res) => {
+    var recipe_post=[];
+    var review=[];
+    app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
         console.log(`${id}`);
         var o_id = new ObjectId(id); 
@@ -198,13 +226,11 @@ app.get('/admin/recipepage', (req,res) => {
                     review[i]=r[i];
                 }
             }
-            
     });
-    console.log(`${rating_count} rating count `);
+   
     res.render('admin/recipepage', {
         recipe_post: recipe_post,
-        review: review,
-        //count:rating_count/4
+        review: review
       });
 });  
          
@@ -436,9 +462,34 @@ app.post('/admin/recipepage', function(req,res){
          "comment": comment,
          "recipe_id": recipe_id  
      }
-     console.log(`${stars} and password is ${comment}`)
-     
-    
+     var o_id = new ObjectId(recipe_id); 
+     var db = mongoose.connection;
+    var collection = db.collection('recipe_post');
+    var average=0;
+    var count=0;
+    var tot_average=0;
+    var tot_count=0;
+    collection.find({'_id':o_id}).toArray(function(err, recipe)
+    {
+        for(var i=0;i<recipe.length;i++)
+        {
+            average=recipe[i].average_rating;
+            count=recipe[i].count;
+        }
+        console.log(`${average} average`);
+        console.log(`${count} count`);
+    });
+    console.log(`${stars}`);
+    tot_average=parseInt(average)+parseInt(stars);
+    console.log(`${tot_average}`);
+    tot_count=parseInt(count)+parseInt("1");
+    var myquery = { _id: o_id };
+    var newvalues = { $set: {average_rating:tot_average,count:tot_count} };
+  db.collection("recipe_post").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+  });
                 db.collection('review').insertOne(data,(err,collection) => {
                     if(err){
                         throw err;
