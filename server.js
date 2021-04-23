@@ -221,17 +221,20 @@ app.get('/admin/recipereg',function(req, res) {
             {
                 for(var i=0;i<r.length;i++)
                 {
-                    var c=r[i].stars;
-                    rating_count=parseInt(rating_count)+parseInt(c);
+                    //var c=r[i].stars;
+                    //rating_count=parseInt(rating_count)+parseInt(c);
                     review[i]=r[i];
                 }
             }
+              
     });
-   
+    //console.log(`${rating_count} rating count `);
     res.render('admin/recipepage', {
         recipe_post: recipe_post,
         review: review
       });
+    recipe_post=[];
+    review=[];
 });  
          
     
@@ -494,7 +497,7 @@ app.post('/admin/recipepage', function(req,res){
                     if(err){
                         throw err;
                     }
-                    console.log("Record Inserted Successfully");
+                    //console.log("Record Inserted Successfully");
                 });
                 return res.redirect('/admin/recipepage')
 })
