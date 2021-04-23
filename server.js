@@ -442,12 +442,12 @@ app.get('/',function(req,res) {
 //Review
 app.post('/admin/recipepage', function(req,res){
     console.log(`${req.session.collection.email}`);
-     var email=req.session.collection.email;
+     var user_name=req.session.collection.name;
      var stars = req.body.stars;
      var comment = req.body.comment;
     
      var data = {
-         "email": email,
+         "name": user_name,
          "stars": stars,
          "comment": comment
          
