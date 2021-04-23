@@ -112,14 +112,36 @@
                                     <div class="row" style="margin-top:40px;">
                                         <div class="col-md-6">
                                         <div class="well well-sm">
-                                            <div class="text-right">
-                                                <button class="btn btn-success btn-lg" type="submit" style="font-family: Montserrat, sans-serif">Leave a review</button> 
+                                            <div class="text-left">
+                                            <form accept-charset="UTF-8" action="" method="post">
+                                                <input id="ratings-hidden" name="rating" type="hidden"> 
+                                                <fieldset class="rating">
+                                                    <input type="radio" id="star5" name="stars" value="5" /><label for="star5" >5 stars</label>
+                                                    <input type="radio" id="star4" name="stars" value="4" /><label for="star4" >4 stars</label>
+                                                    <input type="radio" id="star3" name="stars" value="3" /><label for="star3" >3 stars</label>
+                                                    <input type="radio" id="star2" name="stars" value="2" /><label for="star2" >2 stars</label>
+                                                    <input type="radio" id="star1" name="stars" value="1" /><label for="star1">1 star</label>
+                                                </fieldset>
+                                                
+                                                <br>
+                                                <br>
+                                                <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+                                
+                                                <div class="text-right">
+                                                    <div class="stars starrr" data-rating="0"></div>
+                                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                                </div>
+                                            </form>
+                                                <!-- <button class="btn btn-success btn-lg" type="submit">Leave a review</button> -->
+                                                <!-- <button class="btn btn-success btn-lg" type="submit" style="font-family: Montserrat, sans-serif">Leave a review</button>  -->
                                                 <!-- <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a> -->
                                              </div>
                                         
-                                            <div class="row" id="post-review-box" style="display:none;">
+                                            <!-- <div class="row" id="post-review-box" style="display:none;">
                                                 <div class="col-md-12">
-                                                    <form accept-charset="UTF-8" action="" method="post">
+                                                    <form accept-charset="UTF-8" action="">
                                                         <input id="ratings-hidden" name="rating" type="hidden"> 
                                                         <fieldset class="rating">
                                                             <input type="radio" id="star5" name="stars" value="5" /><label for="star5" >5 stars</label>
@@ -128,6 +150,7 @@
                                                             <input type="radio" id="star2" name="stars" value="2" /><label for="star2" >2 stars</label>
                                                             <input type="radio" id="star1" name="stars" value="1" /><label for="star1">1 star</label>
                                                         </fieldset>
+                                                        
                                                         <br>
                                                         <br>
                                                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
@@ -140,7 +163,7 @@
                                                         </div>
                                                     </form>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div> 
                                         
                                         </div>
@@ -153,6 +176,7 @@
             </section>
         </section>
     </main>
+    
     <script src="/static//js/jquery.min.js"></script>
     <script src="/static//bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
