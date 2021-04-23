@@ -53,7 +53,7 @@
                                     <p style="margin-left: 144px;margin-bottom: 0px;margin-top: -26px;font-size: 19px;"></p>
                                 </div>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 0px;"><br>
-                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%= recipe_post.prep %></span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%></span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%= recipe_post.prep %> mins</span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%> mins</span></p>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 15px;"> 
                                     <span class="by" style="font-family: Montserrat, sans-serif;">Category: <%= recipe_post.recipes %>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;"></span></span></p>
                                     <img class="img-fluid" src="/static/admin/img/desk.jpg">
@@ -70,7 +70,12 @@
                                  <% } %>
                                 </p>
                                    
-                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;margin-left: 421px;margin-top: -268px;"> <%=recipe_post.procedure%> </p>
+                                <p style="font-family: Montserrat, sans-serif;width: 251px;height: 248px;margin-left: 421px;margin-top: -268px;"><% var res = recipe_post.procedure.split(",") %>
+                                    <% for(var i=0;i<res.length;i++){ %>
+                                        <%= res[i] %>
+                                        <br>
+                                        
+                                 <% } %> </p>
                                     
                                     <% }); %>
                                     <h2 style="font-family: Montserrat, sans-serif;font-size: 28px;font-weight: normal;">Reviews</h2>
