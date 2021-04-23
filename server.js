@@ -133,6 +133,7 @@ app.get('/admin/myrecipe',function(req, res) {
 app.get('/admin/recipe',function(req, res) {
     var db = mongoose.connection;
     var food=req.query.id;
+    
     var collection = db.collection('recipe_post');
     collection.find({'recipes':food}).toArray(function(err, recipe) {
       res.render('admin/recipe', {'recipe_post': recipe})
@@ -159,9 +160,9 @@ app.get('/admin/recipereg',function(req, res) {
 });
 
 //rendering values in recipe page
-    var recipe_post=[];
-    var review=[];
-    app.get('/admin/recipepage', (req,res) => {
+var recipe_post=[];
+var review=[];
+app.get('/admin/recipepage', (req,res) => {
         var id=req.query.id;
         console.log(`${id}`);
         var o_id = new ObjectId(id); 
