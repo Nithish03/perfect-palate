@@ -465,6 +465,7 @@ app.post('/admin/recipepage', function(req,res){
          "comment": comment,
          "recipe_id": recipe_id  
      }
+
      var o_id = new ObjectId(recipe_id); 
      var db = mongoose.connection;
     var collection = db.collection('recipe_post');
@@ -480,26 +481,29 @@ app.post('/admin/recipepage', function(req,res){
             count=recipe[i].count;
         }
         console.log(`${average} average`);
-        console.log(`${count} count`);
+        //console.log(`${count} count`);
     });
-    console.log(`${stars}`);
-    tot_average=parseInt(average)+parseInt(stars);
-    console.log(`${tot_average}`);
-    tot_count=parseInt(count)+parseInt("1");
+    console.log(`${average} averageout`);
+    //console.log(`${stars}`);
+    tot_average=average+stars;
+    //console.log(`${tot_average}`);
+    //tot_count=parseInt(count)+parseInt("1");
     var myquery = { _id: o_id };
     var newvalues = { $set: {average_rating:tot_average,count:tot_count} };
+    db.collection('review').insertOne(data,(err,collection) => {
+        if(err){
+            throw err;
+        }
+        console.log("Record Inserted Successfully");
+    });
+    
   db.collection("recipe_post").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
-    db.close();
+    // db.close();
   });
-                db.collection('review').insertOne(data,(err,collection) => {
-                    if(err){
-                        throw err;
-                    }
-                    //console.log("Record Inserted Successfully");
-                });
-                return res.redirect('/admin/recipepage')
+  return res.redirect('/admin/recipepage')
+                
 })
 
 //review
