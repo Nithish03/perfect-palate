@@ -260,6 +260,7 @@ app.post('/admin/recipereg', function(req,res){
      var procedure = req.body.procedure;
      var about = req.body.about;
      var today = mm+'-'+dd+'-'+yyyy;
+     var servings = req.body.servings;
      console.log(`${recipe} ${prep}`);
      var data = {
          "name": user_name,
@@ -270,7 +271,8 @@ app.post('/admin/recipereg', function(req,res){
          "ingredients": ingredients,
          "procedure": procedure,
          "about": about,
-         "date": today
+         "date": today,
+         "servings": servings
 
          
      }
