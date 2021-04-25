@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button.css">
     <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script>
         window.onload = function() {
 	    if(!window.location.hash) {
@@ -25,7 +26,78 @@
     }
     </script>
 </head>
-
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+    div.stars{
+      width: 270px;
+      display: inline-block;
+    }
+     
+    input.star{
+      display: none;
+    }
+     
+    label.star {
+      float: right;
+      padding: 10px;
+      font-size: 36px;
+      color: #444;
+      transition: all .2s;
+    }
+     
+    input.star:checked ~ label.star:before {
+      content:'\f005';
+      color: #ffd900;
+      transition: all .25s;
+    }
+     
+     
+    input.star-5:checked ~ label.star:before {
+      color: #ffc700;
+      /* text-shadow: 0 0 20px #952; */
+    }
+     
+    input.star-1:checked ~ label.star:before {
+      color:#ffc700;
+    }
+     
+    label.star:hover{
+      transform: rotate(-15deg) scale(1.3);
+    }
+     
+    label.star:before{
+      content:'\f006';
+      font-family: FontAwesome;
+    }
+     
+    .rev-box{
+      overflow: hidden;
+      height: 0;
+      width: 100%;
+      transition: all .25s;
+    }
+     
+    textarea.review{
+      background: #222;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+      height: 100px;
+      padding: 10px;
+      box-sizing: border-box;
+      color: #ffc700;
+    }
+     
+    label.review{
+      display: block;
+      transition:opacity .25s;
+    }
+     
+    input.star:checked ~ .rev-box{
+      height: 125px;
+      overflow: visible;
+    }
+    </style>
 <body >
      
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
@@ -104,79 +176,38 @@
                                         <p style="font-family: Montserrat, sans-serif;width: 581px;height: 11px;margin-bottom: 16px;margin-left: 0px;"> <%= review.comment%> </p> 
                                         <br>
                                         <% }) %>
-                                 
-                                  
-                                  <!-- <div class="rating" style="width: 128px;height: 20px;margin-left: 0px;margin-top: 0px;margin-bottom: 0px;font-family: Montserrat, sans-serif;font-size: 10px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 19px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 19px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 19px;">
-                                    <img src="/static/admin/img/star-half-empty.svg" style="width: 19px;">
-                                    <img src="/static/admin/img/star-empty.svg" style="width: 19px;">
-                                    </div> -->
-                                  
-                                  
-                                  
-
-                                  
-
-
+                                        
                                 </h3> 
                                 <div class="container">
                                     <div class="row" style="margin-top:40px;">
                                         <div class="col-md-6">
                                         <div class="well well-sm">
                                             <div class="text-left">
-                                            <form accept-charset="UTF-8" action="" method="post">
+                                            <form accept-charset="UTF-8" method="post">
                                                 <input id="ratings-hidden" name="rating" type="hidden"> 
-                                                <fieldset class="rating">
-                                                    <input type="radio" id="star5" name="stars" value="5" /><label for="star5" >5 stars</label>
-                                                    <input type="radio" id="star4" name="stars" value="4" /><label for="star4" >4 stars</label>
-                                                    <input type="radio" id="star3" name="stars" value="3" /><label for="star3" >3 stars</label>
-                                                    <input type="radio" id="star2" name="stars" value="2" /><label for="star2" >2 stars</label>
-                                                    <input type="radio" id="star1" name="stars" value="1" /><label for="star1">1 star</label>
-                                                </fieldset>
-                                                
-                                                <br>
-                                                <br>
+                                                <div class="stars">
+                                                    <input class="star star-5" id="star-5" type="radio" value="5" name="stars"/>
+                                                    <label class="star star-5" for="star-5"></label>
+                                                    <input class="star star-4" id="star-4" type="radio" value="4" name="stars"/>
+                                                    <label class="star star-4" for="star-4"></label>
+                                                    <input class="star star-3" id="star-3" type="radio" value="3" name="stars"/>
+                                                    <label class="star star-3" for="star-3"></label>
+                                                    <input class="star star-2" id="star-2" type="radio" value="2" name="stars"/>
+                                                    <label class="star star-2" for="star-2"></label>
+                                                    <input class="star star-1" id="star-1" type="radio" value="1" name="stars"/>
+                                                    <label class="star star-1" for="star-1"></label>
+                                                </div>
+                                            
                                                 <textarea class="form-control animated" cols="50" id="new-review" name="comment" style="font-family: Montserrat, sans-serif; margin-left:0px" placeholder="Enter your review here" rows="5"></textarea>
-                                
+                                                <br>
                                                 <div class="text-right">
-                                                    <div class="stars starrr" data-rating="0"></div>
-                                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
                                                     <button class="btn btn-success btn-lg" type="submit">Post</button>
                                                 </div>
                                             </form>
-                                                <!-- <button class="btn btn-success btn-lg" type="submit">Leave a review</button> -->
-                                                <!-- <button class="btn btn-success btn-lg" type="submit" style="font-family: Montserrat, sans-serif">Leave a review</button>  -->
-                                                <!-- <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a> -->
+                                                
                                              </div>
                                         
-                                            <!-- <div class="row" id="post-review-box" style="display:none;">
-                                                <div class="col-md-12">
-                                                    <form accept-charset="UTF-8" action="">
-                                                        <input id="ratings-hidden" name="rating" type="hidden"> 
-                                                        <fieldset class="rating">
-                                                            <input type="radio" id="star5" name="stars" value="5" /><label for="star5" >5 stars</label>
-                                                            <input type="radio" id="star4" name="stars" value="4" /><label for="star4" >4 stars</label>
-                                                            <input type="radio" id="star3" name="stars" value="3" /><label for="star3" >3 stars</label>
-                                                            <input type="radio" id="star2" name="stars" value="2" /><label for="star2" >2 stars</label>
-                                                            <input type="radio" id="star1" name="stars" value="1" /><label for="star1">1 star</label>
-                                                        </fieldset>
-                                                        
-                                                        <br>
-                                                        <br>
-                                                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-                                        
-                                                        <div class="text-right">
-                                                            <div class="stars starrr" data-rating="0"></div>
-                                                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                                            <button class="btn btn-success btn-lg" type="submit">Save</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div> -->
+                                            
                                         </div> 
                                         
                                         </div>
