@@ -55,36 +55,6 @@ try {
             console.log("Could not connect");
     }
 var db = mongoose.connection;
-//recipe
-
-app.post('/admin/recipereg', function(req,res){
-    //console.log(`${req.session.collection.email}`);
-    //  var email=req.session.collection.email;
-     var recipe = req.body.recipe;
-     var prep = req.body.prep;
-     var cook = req.body.cook;
-     var recipes = req.body.recipes;
-     var ingredients = req.body.ingredients;
-     var procedure = req.body.procedure;
-    
-     var data = {
-        //  "email": email,
-         "recipe": recipe,
-         "prep": prep,
-         "cook": cook,
-         "recipes": recipes,
-         "ingredients": ingredients,
-         "procedure": procedure
-         
-     }
-    db.collection('recipe_post').insertOne(data,(err,collection) => {
-        if(err){
-        throw err;
-        }
-        console.log("Record Inserted Successfully");
-        });
-        return res.redirect('/admin/categories')
-})
 
 
 // Init gridfs
@@ -263,24 +233,45 @@ app.get('/admin/recipereg',function(req,res) {
     res.render('recipe');
     res.sendFile(__dirname + '/admin/recipereg')
 });
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+
+console.log(today);
 app.post('/admin/recipereg', function(req,res){
     //console.log(`${req.session.collection.email}`);
-    //  var email=req.session.collection.email;
+     var user_name=req.session.collection.name;
      var recipe = req.body.recipe;
      var prep = req.body.prep;
      var cook = req.body.cook;
      var recipes = req.body.recipes;
      var ingredients = req.body.ingredients;
      var procedure = req.body.procedure;
+     var about = req.body.about;
+     var today = mm+'-'+dd+'-'+yyyy;
      console.log(`${recipe} ${prep}`);
      var data = {
-        //  "email": email,
+         "name": user_name,
          "recipe": recipe,
          "prep": prep,
          "cook": cook,
          "recipes": recipes,
          "ingredients": ingredients,
-         "procedure": procedure
+         "procedure": procedure,
+         "about": about,
+         "date": today
+
          
      }
     db.collection('recipe_post').insertOne(data,(err,collection) => {
