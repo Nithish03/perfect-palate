@@ -55,12 +55,14 @@
                             <div class="intro">
                                 <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%= recipe_post.recipe %></h1>
                                 <div class="rating" style="width: 132px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 22px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 22px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 22px;">
-                                    <img src="/static/admin/img/star-half-empty.svg" style="width: 22px;">
-                                    <img src="/static/admin/img/star-empty.svg" style="width: 22px;">
-                                    <p style="margin-left: 144px;margin-bottom: 0px;margin-top: -26px;font-size: 19px;"></p>
+                                    <% var rating=recipe_post.average_rating/recipe_post.count%>
+                                        <% var round=rating.toPrecision(1) %>
+                                        <% for(var i=0;i< round;i++){ %>  
+                                                    <img src="/static/admin/img/star.svg" style="width: 28px;">      
+                                       <% } %>
+                
+                                       
+                                    
                                 </div>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 0px;"><br>
                                     <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%= recipe_post.prep %> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Servings: <%=recipe_post.servings%></span></p>

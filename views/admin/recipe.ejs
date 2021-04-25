@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="/static/admin/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button-1.css">
+    <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button.css">
+    <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -48,6 +52,7 @@
                                 </div>
                                 <p><%=r.about%></p>
                                 <div class="rating" style="width: 302.656px;height: 57px;">
+<<<<<<< Updated upstream
                                     <img src="/static/admin/img/star.svg" style="width: 28px;">
                                     <img src="/static/admin/img/star.svg" style="width: 28px;">
                                     <img src="/static/admin/img/star.svg" style="width: 28px;">
@@ -56,6 +61,19 @@
                                     <!-- <% var id=r.id %> -->
                                     
                                     <button class="btn btn-outline-primary btn-sm" style="width:70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
+=======
+                                    <% var rating=r.average_rating/r.count%>
+                                        <% var remaining=5-rating.toPrecision(1) %>
+                                        <% for(var i=0;i< rating.toPrecision(1);i++){ %>          
+                                                <img src="/static/admin/img/star.svg" style="width: 28px;">
+                                       <% } %>
+                                       <% for(var i=0;i< remaining;i++){ %>          
+                                                <img src="/static/admin/img/star-empty.svg" style="width: 28px;">
+                                        <% } %>
+                                       <br>
+                                       <br>
+                                    <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
+>>>>>>> Stashed changes
                                                                 </div>
                         </div>
                     </div>

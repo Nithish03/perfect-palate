@@ -484,9 +484,9 @@ app.post('/admin/recipepage', function(req,res){
                 console.log("1 document updated");
             });
         }
-        console.log(`${average} average`);
+       // console.log(`${average} average`);
     });
-    console.log(`${average} averageout`);
+    //console.log(`${average} averageout`);
     db.collection('review').insertOne(data,(err,collection) => {
         if(err){
             throw err;
