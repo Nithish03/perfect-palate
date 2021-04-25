@@ -48,14 +48,20 @@
                                 </div>
                                 <p><%=r.about%></p>
                                 <div class="rating" style="width: 302.656px;height: 57px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star-half-empty.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star-empty.svg" style="width: 28px;"></div>
+                                    <% var rating=r.average_rating/r.count%>
+                                    <% var remaining=5-rating.toPrecision(1) %>
+                                    <% for(var i=0;i< rating.toPrecision(1);i++){ %>          
+                                            <img src="/static/admin/img/star.svg" style="width: 28px;">
+                                   <% } %>
+                                   <% for(var i=0;i< remaining;i++){ %>          
+                                            <img src="/static/admin/img/star-empty.svg" style="width: 28px;">
+                                    <% } %>
+                                   <br>
+                                   <br>   
+                                </div>
                                     <!-- <% var id=r.id %> -->
                                     
-                                    <button class="btn btn-outline-primary btn-sm" style="width:70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r.id%>'">View</button>
+                                    <button class="btn btn-outline-primary btn-sm" style="width: 70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
                                                                 </div>
                         </div>
                     </div>
