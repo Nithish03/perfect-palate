@@ -252,6 +252,7 @@ console.log(today);
 app.post('/admin/recipereg', function(req,res){
     //console.log(`${req.session.collection.email}`);
      var user_name=req.session.collection.name;
+     var email = req.session.collection.email;
      var recipe = req.body.recipe;
      var prep = req.body.prep;
      var cook = req.body.cook;
@@ -264,6 +265,7 @@ app.post('/admin/recipereg', function(req,res){
      console.log(`${recipe} ${prep}`);
      var data = {
          "name": user_name,
+         "email": email,
          "recipe": recipe,
          "prep": prep,
          "cook": cook,

@@ -31,15 +31,15 @@
         <section class="clean-block clean-blog-list dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Welcome </h2>
-                    <p>My Recipes</p>
+                    <h2 class="text-info">Welcome Chef</h2>
+                    <p>Your archives of recipe</p>
                 </div>
                 <div class="block-content">
                     <% recipe_post.forEach(function(r){ %>      
                     <div class="clean-blog-post">
                         <div class="row">
                             <div class="col-lg-5">
-                                <img class="rounded img-fluid" src="/static/admin/img/tech/image4.jpg">
+                                <img class="rounded img-fluid" src="/static/admin/img/recipe.jpg">
                             </div>
                             <div class="col-lg-7">
                                 <h3><%= r.recipe%></h3>
@@ -55,7 +55,7 @@
                                     <img src="/static/admin/img/star-empty.svg" style="width: 28px;"></div>
                                     <!-- <% var id=r.id %> -->
                                     
-                                    <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipepage?id=<%=r.id%>'">View</button>
+                                    <button class="btn btn-outline-primary btn-sm" style="width:70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r.id%>'">View</button>
                                                                 </div>
                         </div>
                     </div>
