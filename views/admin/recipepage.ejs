@@ -54,13 +54,14 @@
                         <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                             <div class="intro">
                                 <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%= recipe_post.recipe %></h1>
-                                <div class="rating" style="width: 132px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
+                                <div class="rating" style="width: 170px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
                                     <% var rating=recipe_post.average_rating/recipe_post.count%>
                                         <% var round=rating.toPrecision(1) %>
                                         <% for(var i=0;i< round;i++){ %>  
                                                     <img src="/static/admin/img/star.svg" style="width: 28px;">      
                                        <% } %>
-                
+                                       <br>
+                                        <br>
                                        
                                     
                                 </div>
