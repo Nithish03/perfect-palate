@@ -15,7 +15,6 @@ const { connect } = require("http2");
 const { response } = require("express");
 const { body, validationResult } = require('express-validator');
 var ObjectId = require('mongodb').ObjectID;
-
 const port = 3000;
 const app = express()
 const router = express.Router();
@@ -364,7 +363,7 @@ app.post('/admin/registration', function(req,res){
     if(password==confirm)
     {
         flag=1;
-    }
+    } 
     if(flag==1)
     {
      var data = {
@@ -384,7 +383,6 @@ app.post('/admin/registration', function(req,res){
             console.log(collection);
             if(collection!=null)
             {
-                return res.redirect('/admin/login')
             }
             else
             {
@@ -396,7 +394,7 @@ app.post('/admin/registration', function(req,res){
                     req.session.collection=collection;
                     console.log("Record Inserted Successfully");
                 });
-                return res.redirect('/admin/login')
+                
             }
         }
     });

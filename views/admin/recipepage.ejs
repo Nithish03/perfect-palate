@@ -126,21 +126,21 @@
                         <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                             <div class="intro">
                                 <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%= recipe_post.recipe %></h1>
-                                <div class="rating" style="width: 170px;height: 40px;margin-left: 270px;margin-top: -36px;margin-bottom: 14px;">
+                                <div class="rating" style="width: 170px;height: 60px;margin-left: 295px;margin-top: -36px;margin-bottom: 14px;">
                                     <% var rating=recipe_post.average_rating/recipe_post.count%>
                                         <% var round=rating.toPrecision(1) %>
                                         <% for(var i=0;i< round;i++){ %>  
-                                                    <img src="/static/admin/img/star.svg" style="width: 28px;">      
+                                                    <img src="/static/admin/img/star.svg" style="width: 28px;margin-left: -3px;">  
                                        <% } %>
                                        <br>
                                         <br>
                                        
                                     
                                 </div>
-                                <p class="text-center" style="margin-top: -6px;margin-left: 0px;"><br>
-                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -410px;">Preparation time: <%= recipe_post.prep %> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Servings: <%=recipe_post.servings%></span></p>
+                                <p class="text-center" style="margin-top: 15px;margin-left: 0px;"><br>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -450px;">Preparation time: <%= recipe_post.prep %> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Servings: <%=recipe_post.servings%></span></p>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 15px;"> 
-                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -20px;">Category: <%= recipe_post.recipes %>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;margin-left: 15px;"></span></span></p>
+                                    <span class="by" style="font-family: Montserrat, sans-serif;margin-left: 0px;">Category: <%= recipe_post.recipes %>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;margin-left: 15px;"></span></span></p>
                                     <img class="img-fluid" srtyle="width: 30px;height:2px;"src="/static/admin/img/recipepage.jpg">
                                 <div class="rating"></div>
                             </div>

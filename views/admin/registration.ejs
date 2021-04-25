@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
+    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.css">
 </head>
 
 <body>
@@ -30,29 +30,76 @@
                     <h2 class="text-info">Registration</h2>
                     <p>Join the world of culinary and showcase your recipes to the world.</p>
                 </div>
-                <form id="reg-form" method="POST" >
+                <form onkeyup="checkForm()" id="reg-form" method="POST" >
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input class="form-control item" type="text" id="name" name="name">
+                        <input class="form-control item" type="text" id="name" name="name" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control item" type="email" id="email" name="email">
+                        <input class="form-control item" type="email" id="email" name="email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input class="form-control item" type="password" id="password" name="password">
+                        <input class="form-control item" onkeyup="checkPass" type="password" id="txtNewPassword" name="password" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Confirm Password</label>
-                        <input class="form-control item" type="password" id="password" name="confirm">
+                        <input class="form-control item" onkeyup="checkPass" type="password" id="txtConfirmPassword" onchange="checkPasswordMatch();" name="confirm" required>
+                        <div class="registrationFormAlert" id="divCheckPasswordMatch">
+                        </div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+
+                    <button class="btn btn-primary btn-block" type="submit" id="btn" onclick="sweetalertclick()">Sign Up</button>
+                    
                     <p class="text-center" style="margin: 11px;"><a href="/admin/login">Already a member? Sign in</a></p>
                 </form>
             </div>
         </section>
     </main>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
+    <script>
+            function sweetalertclick(){
+                Swal.fire({
+                title: 'Registration Successful',
+                text: 'Welcome to Perfect Palate Chef! Please log-in to enter the world of cuilnary',
+                icon: 'success',
+                })
+                };
+                
+    </script>
+    <script>
+        function checkPasswordMatch() {
+            var password = $("#txtNewPassword").val();
+            var confirmPassword = $("#txtConfirmPassword").val();
+
+            if (password != confirmPassword)
+                $("#divCheckPasswordMatch").html("<p class=text-danger>Passwords do not match!</p>");
+            else
+                $("#divCheckPasswordMatch").html("<p class=text-success>Passwords match.</p>");
+        }
+
+        $(document).ready(function () {
+        $("#txtNewPassword, #txtConfirmPassword").keyup(checkPasswordMatch);
+        });
+    </script>
+    <script>
+        var inp = document.getElementsByTagName("input");
+        var btn = document.getElementById("btn");
+        btn.disabled = "disabled";
+
+        function checkForm() {
+            for (var i = 0; i < inp.length; i++) {
+                if (inp[i].checkValidity() == false) {
+                    btn.disabled = "disabled";
+                } else {
+                    btn.disabled = false;
+                }
+            }
+        }           
+    </script>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
