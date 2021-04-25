@@ -43,7 +43,7 @@
                     <div class="clean-blog-post">
                         <div class="row">
                             <div class="col-lg-5">
-                                <img class="rounded img-fluid" src="/static/admin/img/recipe.jpg">
+                                <img class="rounded img-fluid" style="margin-bottom: 50px;" src="/static/admin/img/recipe.jpg">
                             </div>
                             <div class="col-lg-7">
                                 <h3><%= r.recipe%></h3>
@@ -52,16 +52,6 @@
                                 </div>
                                 <p><%=r.about%></p>
                                 <div class="rating" style="width: 302.656px;height: 57px;">
-<<<<<<< Updated upstream
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star-half-empty.svg" style="width: 28px;">
-                                    <img src="/static/admin/img/star-empty.svg" style="width: 28px;"></div>
-                                    <!-- <% var id=r.id %> -->
-                                    
-                                    <button class="btn btn-outline-primary btn-sm" style="width:70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
-=======
                                     <% var rating=r.average_rating/r.count%>
                                         <% var remaining=5-rating.toPrecision(1) %>
                                         <% for(var i=0;i< rating.toPrecision(1);i++){ %>          
@@ -72,9 +62,8 @@
                                         <% } %>
                                        <br>
                                        <br>
-                                    <button class="btn btn-outline-primary btn-sm" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
->>>>>>> Stashed changes
-                                                                </div>
+                                    <button class="btn btn-outline-primary btn-sm" style="width: 70px;" type="button" onclick="location.href='/admin/recipepage?id=<%=r._id%>'">View</button>
+                                    </div>
                         </div>
                     </div>
                     <% }); %>
