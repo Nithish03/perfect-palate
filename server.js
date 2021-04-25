@@ -262,6 +262,8 @@ app.post('/admin/recipereg', function(req,res){
      var about = req.body.about;
      var today = mm+'-'+dd+'-'+yyyy;
      var servings = req.body.servings;
+     var average_rating=0;
+     var count=0;
      console.log(`${recipe} ${prep}`);
      var data = {
          "name": user_name,
@@ -274,7 +276,9 @@ app.post('/admin/recipereg', function(req,res){
          "procedure": procedure,
          "about": about,
          "date": today,
-         "servings": servings
+         "servings": servings,
+         "average_rating":average_rating,
+         "count":count
 
          
      }
