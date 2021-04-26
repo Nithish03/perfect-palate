@@ -41,7 +41,7 @@ app.use(methodOverride('_method'));
 app.use(session({secret:"hgvjblihoiu89yhugb",resave:false,saveUninitialized:true}));
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname, {  index: '/admin/registration'}));
+app.use(express.static(__dirname, {  index: '/admin/index'}));
 app.use(bodyParser.urlencoded({
      extended: false
 }));
