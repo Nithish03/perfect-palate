@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     
-    <title>Recipe Page - Perfect Palate</title>
+    <title>Recipe Page | Perfect Palate</title>
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https:/fonts.googleapis.com/css?family=Lora">
@@ -21,7 +21,7 @@
         window.onload = function() {
 	    if(!window.location.hash) {
 		    window.location = window.location + '#loaded';
-		    window.location.reload();
+		    window.location.reload(true);
 	    }
     }
     </script>
@@ -128,10 +128,13 @@
                                 <h1 class="text-center" style="font-family: Montserrat, sans-serif;"><%= recipe_post.recipe %></h1>
                                 <div class="rating" style="width: 170px;height: 60px;margin-left: 295px;margin-top: -36px;margin-bottom: 14px;">
                                     <% var rating=recipe_post.average_rating/recipe_post.count%>
-                                        <% var round=rating.toPrecision(1) %>
-                                        <% for(var i=0;i< round;i++){ %>  
-                                                    <img src="/static/admin/img/star.svg" style="width: 28px;margin-left: -3px;">  
-                                       <% } %>
+                                    <% var remaining=5-rating.toPrecision(1) %>
+                                    <% for(var i=0;i< rating.toPrecision(1);i++){ %>          
+                                            <img src="/static/admin/img/star.svg" style="width: 28px;">
+                                   <% } %>
+                                   <% for(var i=0;i< remaining;i++){ %>          
+                                            <img src="/static/admin/img/star-empty.svg" style="width: 28px;">
+                                    <% } %>
                                        <br>
                                         <br>
                                        
