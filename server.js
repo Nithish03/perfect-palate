@@ -15,7 +15,7 @@ const { connect } = require("http2");
 const { response } = require("express");
 const { body, validationResult } = require('express-validator');
 var ObjectId = require('mongodb').ObjectID;
-const port = 3000;
+var port = process.env.PORT|| 3000;
 const app = express()
 const router = express.Router();
 
@@ -450,7 +450,7 @@ app.get('/',function(req,res) {
 
 //Review
 app.post('/admin/recipepage', function(req,res){
-    console.log(`${req.session.collection.email}`);
+    //console.log(`${req.session.collection.email}`);
      var user_name=req.session.collection.name;
      var stars = req.body.stars;
      var comment = req.body.comment;
@@ -483,7 +483,7 @@ app.post('/admin/recipepage', function(req,res){
             db.collection("recipe_post").updateOne(myquery, newvalues, function(err, res) 
             {
                 if (err) throw err;
-                console.log("1 document updated");
+                //console.log("1 document updated");
             });
         }
        // console.log(`${average} average`);
@@ -493,9 +493,9 @@ app.post('/admin/recipepage', function(req,res){
         if(err){
             throw err;
         }
-        console.log("Record Inserted Successfully");
+        //console.log("Record Inserted Successfully");
     });
-  return res.redirect('/admin/recipepage');
+  return res.redirect('/admin/recipepage?id='+recipe_id);
                 
 })
 
