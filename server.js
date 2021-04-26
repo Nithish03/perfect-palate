@@ -343,7 +343,6 @@ app.get('/image/:filename',(req,res) => {
 
 // Converting to ejs //
 app.get('/',function(req,res) {
-    res.render('reg-form');
     res.sendFile(__dirname + '/admin/registration')
 });
 // @route POST
