@@ -1,3 +1,3 @@
-# recipe-book
+# Perfect-Palate
  -
-This is a simple collaborative project developed using nodeJS and MongoDB.
+This is a culinary website created using MERN-Stack and it is successfully deployed on Heroku.
