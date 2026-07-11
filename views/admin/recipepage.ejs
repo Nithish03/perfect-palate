@@ -9,23 +9,15 @@
     <link rel="shortcut icon" href="/static/admin/img/favicon.ico">
     <link rel="stylesheet" href="/static/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https:/fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="/static/admin/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="/static/admin/css/Article-Clean.css">
-    <link rel="stylesheet" href="https:/cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button-1.css">
     <link rel="stylesheet" href="/static/admin/css/Review-rating-Star-Review-Button.css">
     <link rel="stylesheet" href="/static/admin/css/smoothproducts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <script>
-        window.onload = function() {
-	    if(!window.location.hash) {
-		    window.location = window.location + '#loaded';
-		    window.location.reload(true);
-	    }
-    }
-    </script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
@@ -111,7 +103,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/index">Sign out</a>
+                            <a class="nav-link" href="/admin/logout">Sign out</a>
                         </li>
                     </li>
                 </ul>
@@ -145,7 +137,7 @@
                                     <span class="by" style="font-family: Montserrat, sans-serif;margin-left: -450px;">Preparation time: <%= recipe_post.prep %> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Cooking time: <%=recipe_post.cook%> mins</span> <span> | </span> <span class="by" style="font-family: Montserrat, sans-serif;">Servings: <%=recipe_post.servings%></span></p>
                                 <p class="text-center" style="margin-top: -6px;margin-left: 15px;"> 
                                     <span class="by" style="font-family: Montserrat, sans-serif;margin-left: 0px;">Category: <%= recipe_post.recipes %>&nbsp;<span class="by" style="font-family: Montserrat, sans-serif;margin-left: 15px;"></span></span></p>
-                                    <img class="img-fluid" srtyle="width: 30px;height:2px;"src="/static/admin/img/recipepage.jpg">
+                                    <img class="img-fluid" src="<%= recipe_post.image ? '/uploads/' + recipe_post.image : '/static/admin/img/recipepage.jpg' %>">
                                 <div class="rating"></div>
                             </div>
                             <h2 style="font-family: Montserrat, sans-serif;">Ingredients</h2>
@@ -225,12 +217,12 @@
         </section>
     </main>
     
-    <script src="/static//js/jquery.min.js"></script>
-    <script src="/static//bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/admin/js/jquery.min.js"></script>
+    <script src="/static/admin/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="/static//js/smoothproducts.min.js"></script>
-    <script src="/static//js/theme.js"></script>
-    <script src="/static//js/Review-rating-Star-Review-Button.js"></script>
+    <script src="/static/admin/js/smoothproducts.min.js"></script>
+    <script src="/static/admin/js/theme.js"></script>
+    <script src="/static/admin/js/Review-rating-Star-Review-Button.js"></script>
 </body>
 
 </html>  
