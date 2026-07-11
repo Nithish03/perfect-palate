@@ -18,7 +18,20 @@ if (!SESSION_SECRET && process.env.NODE_ENV === 'production') {
     process.exit(1);
 }
 
+if (!process.env.MONGODB_URI && process.env.NODE_ENV === 'production') {
+    console.error('MONGODB_URI is not set. Add it to your host\'s environment '
+        + 'variables (e.g. your MongoDB Atlas connection string).');
+    process.exit(1);
+}
+
 const { User, Recipe, Review } = require('./models');
+
+// Single shared connection: the session store reuses the Mongoose client
+// instead of opening its own (whose failure would bypass start()'s error
+// handling and crash with an unhandled rejection).
+const dbClientPromise = mongoose.connect(MONGODB_URI)
+    .then((m) => m.connection.getClient());
+dbClientPromise.catch(() => { /* reported by start() */ });
 
 const app = express();
 
@@ -36,7 +49,7 @@ app.use(session({
     secret: SESSION_SECRET || 'dev-only-secret',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: MONGODB_URI }),
+    store: MongoStore.create({ clientPromise: dbClientPromise }),
     cookie: {
         httpOnly: true,
         sameSite: 'lax',
@@ -219,11 +232,13 @@ app.use((err, req, res, next) => {
 // ---------------------------------------------------------------------------
 async function start() {
     try {
-        await mongoose.connect(MONGODB_URI);
+        await dbClientPromise;
         console.log('Connected to MongoDB');
         app.listen(PORT, () => console.log(`Perfect Palate listening on port ${PORT}`));
     } catch (err) {
         console.error('Failed to connect to MongoDB:', err.message);
+        console.error('Check the MONGODB_URI environment variable and your '
+            + 'database\'s network access settings.');
         process.exit(1);
     }
 }
