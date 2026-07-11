@@ -18,40 +18,9 @@ if (!SESSION_SECRET && process.env.NODE_ENV === 'production') {
     process.exit(1);
 }
 
+const { User, Recipe, Review } = require('./models');
+
 const app = express();
-
-// ---------------------------------------------------------------------------
-// Models (bound to the original collection names so existing data still works)
-// ---------------------------------------------------------------------------
-const User = mongoose.model('User', new mongoose.Schema({
-    name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    password: { type: String, required: true } // bcrypt hash
-}, { collection: 'users' }));
-
-const Recipe = mongoose.model('Recipe', new mongoose.Schema({
-    name: String,            // author display name
-    email: String,           // author email
-    recipe: { type: String, required: true },   // dish name
-    prep: String,
-    cook: String,
-    recipes: String,         // category (Indian, Thai, ...)
-    ingredients: String,     // comma separated
-    procedure: String,       // comma separated
-    about: String,
-    date: String,            // mm-dd-yyyy, kept for template compatibility
-    servings: String,
-    image: String,           // uploaded image filename in uploads/
-    average_rating: { type: Number, default: 0 }, // running SUM of stars (legacy naming)
-    count: { type: Number, default: 0 }           // number of ratings
-}, { collection: 'recipe_post' }));
-
-const Review = mongoose.model('Review', new mongoose.Schema({
-    name: String,
-    stars: Number,
-    comment: String,
-    recipe_id: String
-}, { collection: 'review' }));
 
 // ---------------------------------------------------------------------------
 // Middleware
@@ -263,4 +232,4 @@ if (require.main === module) {
     start();
 }
 
-module.exports = { app, start, User, Recipe, Review };
+module.exports = { app, start };
