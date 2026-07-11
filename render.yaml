@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: perfect-palate
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false # paste your MongoDB Atlas connection string in the dashboard

@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/index">Sign out</a>
+                        <a class="nav-link" href="/admin/logout">Sign out</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
                     <div class="clean-blog-post">
                         <div class="row">
                             <div class="col-lg-5">
-                                <img class="rounded img-fluid" src="/static/admin/img/recipe.jpg">
+                                <img class="rounded img-fluid" src="<%= r.image ? '/uploads/' + r.image : '/static/admin/img/recipe.jpg' %>">
                             </div>
                             <div class="col-lg-7">
                                 <h3><%= r.recipe%></h3>
